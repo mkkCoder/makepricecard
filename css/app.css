@@ -648,12 +648,36 @@ label.field select:focus,
   position: static;
   flex-shrink: 0;
   margin-top: auto;
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.75rem;
   text-align: center;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   letter-spacing: 0.04em;
-  background: rgba(0, 0, 0, 0.06);
-  opacity: 0.85;
+  font-weight: 600;
+  background: #ececec;
+  color: #444;
+  opacity: 1;
+}
+
+.card-watermark-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.card-watermark-overlay span {
+  transform: rotate(-28deg);
+  font-family: var(--font-ui);
+  font-size: clamp(0.85rem, 3.2vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(20, 32, 28, 0.14);
+  white-space: nowrap;
+  user-select: none;
 }
 
 #fit-note {
@@ -744,7 +768,21 @@ label.field select:focus,
 }
 
 .tpl-neon .card-watermark {
-  background: rgba(57, 255, 182, 0.08);
+  background: #123528;
+  color: #9dffd4;
+}
+
+.tpl-neon .card-watermark-overlay span {
+  color: rgba(57, 255, 182, 0.18);
+}
+
+.tpl-luxury .card-watermark {
+  background: #1c1812;
+  color: #d4b56a;
+}
+
+.tpl-luxury .card-watermark-overlay span {
+  color: rgba(212, 181, 106, 0.16);
 }
 
 .logo-row {

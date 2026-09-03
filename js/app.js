@@ -410,7 +410,7 @@ function bindEditor() {
       kind: 'pdf',
       filename: 'price-card.pdf',
       mime: 'application/pdf',
-      build: (card) => makePdfBlob(card, state.format),
+      build: (card) => makePdfBlob(card, state.format, { isPro }),
     });
   });
 
@@ -419,7 +419,7 @@ function bindEditor() {
       kind: 'png',
       filename: 'price-card.png',
       mime: 'image/png',
-      build: (card) => makePngBlob(card),
+      build: (card) => makePngBlob(card, { isPro }),
     });
   });
 }

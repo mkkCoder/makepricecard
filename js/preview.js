@@ -180,7 +180,10 @@ export function renderPreview(root, state, { isPro }) {
       </div>
       ${
         showWatermark
-          ? `<footer class="card-watermark">${escapeHtml(WATERMARK_TEXT)}</footer>`
+          ? `<div class="card-watermark-overlay" aria-hidden="true"><span>${escapeHtml(
+              WATERMARK_TEXT
+            )}</span></div>
+      <footer class="card-watermark">${escapeHtml(WATERMARK_TEXT)}</footer>`
           : ''
       }
     </article>
