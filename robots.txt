@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://makefastquote.com/pricelist/sitemap.xml
+Sitemap: https://fastpricecard.online/sitemap.xml

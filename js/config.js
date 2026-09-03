@@ -3,7 +3,7 @@
  * Replace CHECKOUT_URL with your real Lemon Squeezy buy/checkout link before going live.
  */
 export const APP_NAME = 'FastPriceCard';
-export const APP_URL = 'makefastquote.com/pricelist';
+export const APP_URL = 'fastpricecard.online';
 export const WATERMARK_TEXT = `Created with ${APP_URL}`;
 
 /** Lemon Squeezy product buy URL (Share → Buy link, or checkout/buy/{variant_id}) */

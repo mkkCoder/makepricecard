@@ -29,11 +29,15 @@ Open the printed URL (ES modules need `http://`, not `file://`).
 3. Add `.nojekyll` is already present so underscore paths are fine.
 4. If the site is at `https://USER.github.io/REPO/`, relative asset paths already work.
 
-### Custom domain
+### Custom domain (`fastpricecard.online`)
 
-- Apex: `A` records to GitHub Pages IPs; clear registrar parking records.
-- `www`: `CNAME` → `USER.github.io`.
-- Wait for SSL before forcing HTTPS-only.
+`CNAME` in the repo root is set to `fastpricecard.online`.
+
+1. At your registrar, point DNS:
+   - **Apex** `fastpricecard.online` → GitHub Pages `A` records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (or ALIAS/ANAME to `mkkcoder.github.io` if your DNS host supports it).
+   - Optional **www** → `CNAME` to `mkkcoder.github.io`.
+2. GitHub → repo **Settings → Pages → Custom domain** → `fastpricecard.online` → enable **Enforce HTTPS** after the certificate is ready.
+3. Clear any registrar parking/`www` parking records that conflict.
 
 ## Commerce setup (Lemon Squeezy)
 
@@ -71,4 +75,4 @@ sitemap.xml
 .nojekyll
 ```
 
-Open **https://mkkcoder.github.io/makepricecard/** for the landing page, then **Open editor**.
+Live site: **https://fastpricecard.online/** (GitHub Pages fallback: `https://mkkcoder.github.io/makepricecard/`).
