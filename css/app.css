@@ -122,7 +122,7 @@ button {
 }
 
 .panel {
-  background: color-mix(in srgb, var(--panel) 92%, white);
+  background: #fbfaf7;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -198,7 +198,7 @@ label.field select:focus,
 .cat-name:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.25);
 }
 
 .tpl-grid,
@@ -223,13 +223,13 @@ label.field select:focus,
 .tpl-chip:hover,
 .fmt-chip:hover {
   transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  border-color: #7aa896;
 }
 
 .tpl-chip.active,
 .fmt-chip.active {
   border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, #fffdf8);
+  background: #e7f3ee;
 }
 
 .tpl-chip.locked {
@@ -423,8 +423,8 @@ label.field select:focus,
   display: grid;
   place-items: center;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--line) 70%, transparent) 1px, transparent 1px),
-    linear-gradient(color-mix(in srgb, var(--line) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(213, 206, 191, 0.7) 1px, transparent 1px),
+    linear-gradient(rgba(213, 206, 191, 0.7) 1px, transparent 1px),
     #ddd6c8;
   background-size: 22px 22px;
   border-radius: 12px;
@@ -485,8 +485,8 @@ label.field select:focus,
     to bottom,
     transparent 0,
     transparent calc(var(--page-h) - 1px),
-    color-mix(in srgb, currentColor 28%, transparent) calc(var(--page-h) - 1px),
-    color-mix(in srgb, currentColor 28%, transparent) var(--page-h)
+    rgba(20, 32, 28, 0.22) calc(var(--page-h) - 1px),
+    rgba(20, 32, 28, 0.22) var(--page-h)
   );
 }
 
@@ -652,7 +652,7 @@ label.field select:focus,
   text-align: center;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
+  background: rgba(0, 0, 0, 0.06);
   opacity: 0.85;
 }
 
