@@ -3,29 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FastPriceCard Editor — Printable Price List & Menu</title>
+    <title>Price List Editor — Free PDF &amp; PNG Export</title>
     <meta
       name="description"
-      content="Build and export printable price lists and menus in your browser. PDF and PNG downloads. Free minimalist template."
+      content="Build printable price lists and menus in your browser. Live preview, PDF &amp; PNG export, free Minimalist template — no account required."
     />
-    <meta property="og:title" content="FastPriceCard Editor" />
-    <meta property="og:description" content="Printable price list & menu editor — 100% client-side." />
-    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#1c1917" />
     <link rel="canonical" href="https://fastpricecard.online/app.html" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:site_name" content="FastPriceCard" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fastpricecard.online/app.html" />
+    <meta property="og:title" content="Price List Editor — Free PDF &amp; PNG Export" />
+    <meta
+      property="og:description"
+      content="Build printable price lists and menus in your browser. Live preview, PDF &amp; PNG export — 100% client-side."
+    />
+    <meta property="og:image" content="https://fastpricecard.online/assets/og-image.png" />
+    <meta property="og:image:alt" content="FastPriceCard printable price list editor preview" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Price List Editor — Free PDF &amp; PNG Export" />
+    <meta
+      name="twitter:description"
+      content="Build printable price lists and menus in your browser. Live preview, PDF &amp; PNG export — 100% client-side."
+    />
+    <meta name="twitter:image" content="https://fastpricecard.online/assets/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/app.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "FastPriceCard Editor",
+        "url": "https://fastpricecard.online/app.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "FastPriceCard",
+          "url": "https://fastpricecard.online/"
+        },
+        "description": "In-browser editor for printable price lists and menus with PDF and PNG export.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
   </head>
   <body>
+    <noscript>
+      <p>
+        FastPriceCard’s price list editor needs JavaScript to run. Enable JavaScript, or read about
+        the
+        <a href="./">free printable price list &amp; menu generator</a>
+        on the home page.
+      </p>
+    </noscript>
     <div class="app-shell">
       <header class="app-header">
         <div class="brand">
           <a class="brand-mark" href="./">Fast<span>Price</span>Card</a>
-          <p class="brand-sub">Editor · everything stays in your browser</p>
+          <h1 class="brand-sub">Printable price list &amp; menu editor · stays in your browser</h1>
         </div>
         <div class="header-actions">
           <span id="pro-badge" class="pro-badge" hidden>Pro</span>

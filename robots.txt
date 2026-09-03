@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Prefer canonical host; GitHub Pages may also serve the project URL.
 Sitemap: https://fastpricecard.online/sitemap.xml

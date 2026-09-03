@@ -76,3 +76,15 @@ sitemap.xml
 ```
 
 Live site: **https://fastpricecard.online/** (GitHub Pages fallback: `https://mkkcoder.github.io/makepricecard/`).
+
+## SEO / Search Console (manual)
+
+After deploying these static SEO assets:
+
+1. Confirm `https://fastpricecard.online/robots.txt` and `/sitemap.xml` return **200**.
+2. In [Google Search Console](https://search.google.com/search-console): add the **URL-prefix** property `https://fastpricecard.online/` (or Domain property for the whole apex).
+3. Verify ownership (HTML file upload, DNS TXT, or Google Analytics — pick one).
+4. Submit sitemap: `https://fastpricecard.online/sitemap.xml`.
+5. Request indexing for `/` and `/app.html` after the first crawl.
+6. Optional: set preferred domain / HTTPS already enforced in GitHub Pages settings.
+7. Share a link once and use [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) / [Twitter Card Validator](https://cards-dev.twitter.com/validator) to refresh `og:image` cache.

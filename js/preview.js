@@ -115,7 +115,7 @@ export function renderPreview(root, state, { isPro }) {
 
   const logo =
     isPro && state.logoDataUrl
-      ? `<img class="card-logo" src="${escapeAttr(state.logoDataUrl)}" alt="" />`
+      ? `<img class="card-logo" src="${escapeAttr(state.logoDataUrl)}" alt="${escapeAttr(state.business.name || 'Business')} logo" />`
       : '';
 
   const cats = (state.categories || [])
