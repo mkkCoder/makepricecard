@@ -1,6 +1,7 @@
 /**
  * Export PDF / PNG from the live preview card.
  * html2canvas 1.4 cannot parse CSS color-mix() / color() — keep card CSS simple.
+ * Downloads use Blob + optional showSaveFilePicker so browsers don't swallow post-await clicks.
  */
 
 function waitFonts() {
@@ -19,7 +20,7 @@ async function captureNode(node) {
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 
   if (typeof html2canvas === 'undefined') {
-    throw new Error('html2canvas missing');
+    throw new Error('html2canvas missing — hard-refresh the page');
   }
 
   return html2canvas(node, {
@@ -33,7 +34,6 @@ async function captureNode(node) {
     onclone: (doc) => {
       const el = doc.getElementById('price-card') || doc.querySelector('.price-card');
       if (!el) return;
-      // Preview-only classes that confuse capture
       el.classList.remove('is-multipage', 'is-scaled');
       el.style.zoom = '1';
       el.style.transform = 'none';
@@ -47,27 +47,75 @@ async function captureNode(node) {
   });
 }
 
-export async function downloadPng(cardEl, filename = 'price-card.png') {
-  if (!cardEl) throw new Error('Preview not ready');
-  const canvas = await captureNode(cardEl);
-  const a = document.createElement('a');
-  a.href = canvas.toDataURL('image/png');
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+function canvasToBlob(canvas, type, quality) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error('Could not create image blob'))),
+      type,
+      quality
+    );
+  });
 }
 
-export async function downloadPdf(cardEl, format = 'a4', filename = 'price-card.pdf') {
-  if (!cardEl) throw new Error('Preview not ready');
+/** Call at the start of a click handler (preserves user gesture). */
+export async function pickSaveTarget(filename, mime) {
+  if (typeof window.showSaveFilePicker !== 'function') return null;
+  const ext = filename.includes('.') ? '.' + filename.split('.').pop() : '';
+  try {
+    return await window.showSaveFilePicker({
+      suggestedName: filename,
+      types: [
+        {
+          description: filename,
+          accept: { [mime]: ext ? [ext] : [] },
+        },
+      ],
+    });
+  } catch (err) {
+    if (err && err.name === 'AbortError') {
+      const cancel = new Error('cancelled');
+      cancel.code = 'cancelled';
+      throw cancel;
+    }
+    return null;
+  }
+}
 
+export async function writeBlob(blob, filename, handle) {
+  if (handle) {
+    const writable = await handle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+    return { method: 'picker' };
+  }
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+    a.remove();
+  }, 4000);
+  return { method: 'anchor', url };
+}
+
+export async function makePngBlob(cardEl) {
+  if (!cardEl) throw new Error('Preview not ready');
+  const canvas = await captureNode(cardEl);
+  return canvasToBlob(canvas, 'image/png');
+}
+
+export async function makePdfBlob(cardEl, format = 'a4') {
+  if (!cardEl) throw new Error('Preview not ready');
   const PDF = JsPDF();
   if (!PDF) throw new Error('jsPDF missing — hard-refresh the page');
 
   const canvas = await captureNode(cardEl);
-  if (!canvas.width || !canvas.height) {
-    throw new Error('Empty capture');
-  }
+  if (!canvas.width || !canvas.height) throw new Error('Empty capture');
 
   const imgData = canvas.toDataURL('image/jpeg', 0.92);
   const isStory = format === 'story';
@@ -98,5 +146,16 @@ export async function downloadPdf(cardEl, format = 'a4', filename = 'price-card.
     }
   }
 
-  pdf.save(filename);
+  return pdf.output('blob');
+}
+
+/** Back-compat helpers */
+export async function downloadPng(cardEl, filename = 'price-card.png') {
+  const blob = await makePngBlob(cardEl);
+  return writeBlob(blob, filename, null);
+}
+
+export async function downloadPdf(cardEl, format = 'a4', filename = 'price-card.pdf') {
+  const blob = await makePdfBlob(cardEl, format);
+  return writeBlob(blob, filename, null);
 }

@@ -1,5 +1,5 @@
 import { CURRENCIES, FORMATS, TEMPLATES } from './config.js';
-import { downloadPdf, downloadPng } from './export.js';
+import { makePdfBlob, makePngBlob, pickSaveTarget, writeBlob } from './export.js';
 import {
   getCachedKey,
   hydrateKeyFromUrl,
@@ -363,48 +363,64 @@ function bindEditor() {
     el.className = `hint${kind ? ` is-${kind}` : ''}`;
   }
 
-  $('#btn-pdf')?.addEventListener('click', async () => {
+  async function runExport({ kind, filename, mime, build }) {
     const card = $('#price-card');
-    const btn = $('#btn-pdf');
-    btn.disabled = true;
-    setExportStatus('Preparing PDF…', 'busy');
+    const btn = kind === 'pdf' ? $('#btn-pdf') : $('#btn-png');
+    if (!card || !btn) return;
+
+    let handle = null;
     try {
-      await downloadPdf(card, state.format);
-      setExportStatus('PDF downloaded.', 'ok');
+      // Ask for save location first while the click is still a user gesture
+      handle = await pickSaveTarget(filename, mime);
+    } catch (err) {
+      if (err && err.code === 'cancelled') {
+        setExportStatus('Save cancelled.', 'busy');
+        return;
+      }
+    }
+
+    btn.disabled = true;
+    setExportStatus(kind === 'pdf' ? 'Preparing PDF…' : 'Preparing PNG…', 'busy');
+    try {
+      const blob = await build(card);
+      const result = await writeBlob(blob, filename, handle);
+      setExportStatus(
+        result.method === 'picker'
+          ? `${kind.toUpperCase()} saved.`
+          : `${kind.toUpperCase()} download started — check your Downloads folder.`,
+        'ok'
+      );
     } catch (err) {
       console.error(err);
-      setExportStatus('PDF export failed. Try PNG instead.', 'err');
+      setExportStatus(
+        kind === 'pdf' ? 'PDF export failed. Try PNG instead.' : 'PNG export failed. Try again.',
+        'err'
+      );
     } finally {
       btn.disabled = false;
       setTimeout(() => {
         const el = $('#export-status');
-        if (el && !el.classList.contains('is-err')) {
-          setExportStatus('');
-        }
-      }, 2500);
+        if (el && !el.classList.contains('is-err')) setExportStatus('');
+      }, 4000);
     }
+  }
+
+  $('#btn-pdf')?.addEventListener('click', () => {
+    runExport({
+      kind: 'pdf',
+      filename: 'price-card.pdf',
+      mime: 'application/pdf',
+      build: (card) => makePdfBlob(card, state.format),
+    });
   });
 
-  $('#btn-png')?.addEventListener('click', async () => {
-    const card = $('#price-card');
-    const btn = $('#btn-png');
-    btn.disabled = true;
-    setExportStatus('Preparing PNG…', 'busy');
-    try {
-      await downloadPng(card);
-      setExportStatus('PNG downloaded.', 'ok');
-    } catch (err) {
-      console.error(err);
-      setExportStatus('PNG export failed. Try again.', 'err');
-    } finally {
-      btn.disabled = false;
-      setTimeout(() => {
-        const el = $('#export-status');
-        if (el && !el.classList.contains('is-err')) {
-          setExportStatus('');
-        }
-      }, 2500);
-    }
+  $('#btn-png')?.addEventListener('click', () => {
+    runExport({
+      kind: 'png',
+      filename: 'price-card.png',
+      mime: 'image/png',
+      build: (card) => makePngBlob(card),
+    });
   });
 }
 
