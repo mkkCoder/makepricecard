@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FastPriceCard Editor — Printable Price List & Menu</title>
+    <meta
+      name="description"
+      content="Build and export printable price lists and menus in your browser. PDF and PNG downloads. Free minimalist template."
+    />
+    <meta property="og:title" content="FastPriceCard Editor" />
+    <meta property="og:description" content="Printable price list & menu editor — 100% client-side." />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://mkkcoder.github.io/makepricecard/app.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <a class="brand-mark" href="./">Fast<span>Price</span>Card</a>
+          <p class="brand-sub">Editor · everything stays in your browser</p>
+        </div>
+        <div class="header-actions">
+          <span id="pro-badge" class="pro-badge" hidden>Pro</span>
+          <a class="btn-ghost" href="./" style="width: auto; text-decoration: none">Home</a>
+          <button type="button" class="btn-ghost" id="btn-export-json" style="width: auto">
+            Export JSON
+          </button>
+          <button type="button" class="btn-ghost" id="btn-export-csv" style="width: auto">
+            Export CSV
+          </button>
+          <button type="button" class="btn-secondary" id="btn-remove-watermark">
+            Remove watermark
+          </button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="panel editor" id="editor-panel">
+          <section class="section">
+            <h2>Business info</h2>
+            <div class="field-grid">
+              <label class="field"
+                >Business name
+                <input id="biz-name" autocomplete="organization" />
+              </label>
+              <label class="field"
+                >Tagline
+                <input id="biz-tagline" />
+              </label>
+              <label class="field"
+                >Phone / WhatsApp
+                <input id="biz-phone" inputmode="tel" />
+              </label>
+              <label class="field"
+                >Instagram
+                <input id="biz-ig" placeholder="handle" />
+              </label>
+              <label class="field"
+                >Currency
+                <select id="currency"></select>
+              </label>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Logo <small style="font-weight: 400; opacity: 0.7">(Pro)</small></h2>
+            <div class="logo-row">
+              <input id="logo-input" type="file" accept="image/*" />
+              <img id="logo-preview" alt="Logo preview" hidden />
+              <button type="button" class="btn-ghost" id="logo-clear" hidden style="width: auto">
+                Clear
+              </button>
+            </div>
+            <p class="hint">Custom logo unlocks with a Pro license.</p>
+          </section>
+
+          <section class="section">
+            <h2>Categories & items</h2>
+            <div id="categories"></div>
+            <button type="button" class="btn-ghost" id="add-category">+ Add category</button>
+          </section>
+
+          <section class="section">
+            <h2>Template</h2>
+            <div class="tpl-grid" id="template-grid"></div>
+          </section>
+
+          <section class="section">
+            <h2>Format</h2>
+            <div class="fmt-grid" id="format-grid"></div>
+          </section>
+        </aside>
+
+        <main class="panel preview-panel">
+          <div class="preview-toolbar">
+            <strong>Live preview</strong>
+            <div class="btn-row">
+              <button type="button" class="btn-secondary" id="btn-pdf">Download PDF</button>
+              <button type="button" class="btn-primary" id="btn-png">Download Image (PNG)</button>
+            </div>
+          </div>
+          <div class="preview-frame" id="preview-frame" data-format="a4">
+            <div class="preview-stage" id="preview-stage"></div>
+          </div>
+          <p class="hint" id="fit-note" hidden></p>
+          <p class="hint" id="license-hint">
+            Free tier includes the Minimalist template. Data auto-saves in this browser.
+          </p>
+        </main>
+      </div>
+
+      <p class="footer-note">
+        100% client-side · no account · no server · exports run on your device
+      </p>
+    </div>
+
+    <dialog id="paywall-modal">
+      <div class="paywall-card">
+        <button type="button" class="modal-close" data-close-paywall aria-label="Close">
+          ×
+        </button>
+        <h2 data-paywall-title>Unlock FastPriceCard Pro</h2>
+        <p class="lead">One-time $19 lifetime unlock. Keep working — checkout opens in a new tab.</p>
+        <ul id="perk-list"></ul>
+        <div class="paywall-actions">
+          <a
+            class="btn-primary"
+            data-checkout
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="text-align: center; text-decoration: none"
+            >Get License ($19)</a
+          >
+          <form id="license-form">
+            <label class="field" for="license-key">Enter license key</label>
+            <input
+              id="license-key"
+              name="license-key"
+              placeholder="Paste key (e.g. FPC-XXXX-XXXX)"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button type="submit" class="btn-secondary" data-activate>Activate</button>
+            <p class="license-status" id="license-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+      <form method="dialog" hidden><button data-backdrop>close</button></form>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

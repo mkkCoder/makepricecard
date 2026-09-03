@@ -78,6 +78,8 @@ button {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   letter-spacing: -0.03em;
   line-height: 1;
+  text-decoration: none;
+  color: inherit;
 }
 
 .brand-mark span {

@@ -62,17 +62,14 @@ Track: **export attempts ÷ successful license activations** (via privacy-friend
 ## Project layout
 
 ```
-index.html
+index.html        # Landing / marketing
+app.html          # Editor
 css/app.css
-js/config.js      # commerce + templates
-js/state.js
-js/storage.js     # localStorage + free JSON/CSV
-js/license.js     # validate, revalidate, ?key= hydrate
-js/paywall.js
-js/preview.js
-js/export.js      # PDF / PNG
-js/app.js         # editor wiring
+css/landing.css
+js/…              # Editor modules
 robots.txt
 sitemap.xml
 .nojekyll
 ```
+
+Open **https://mkkcoder.github.io/makepricecard/** for the landing page, then **Open editor**.
