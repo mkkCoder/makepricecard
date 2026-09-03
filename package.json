@@ -1,0 +1,11 @@
+{
+  "name": "fastpricecard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gen:niches": "node scripts/gen-niches.mjs",
+    "build": "node scripts/gen-niches.mjs",
+    "predev": "node scripts/gen-niches.mjs",
+    "dev": "npx --yes serve ."
+  }
+}

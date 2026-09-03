@@ -8,6 +8,7 @@ import {
 } from './license.js';
 import { initPaywall, openPaywall, proPerkList } from './paywall.js';
 import { renderPreview } from './preview.js';
+import { fetchNicheBySlug, nicheToState } from './niche-utils.js';
 import { defaultState, moveItem, normalizeCurrency, uid } from './state.js';
 import { exportCsv, exportJson, loadState, saveState } from './storage.js';
 
@@ -15,6 +16,26 @@ let state = loadState() || defaultState();
 state.currency = normalizeCurrency(state.currency);
 let isPro = false;
 let saveTimer = null;
+
+/** Load ?niche=slug into editor state (CTA from programmatic SEO pages). */
+async function applyNicheFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('niche');
+  if (!slug) return;
+
+  try {
+    const niche = await fetchNicheBySlug(slug);
+    if (!niche) return;
+    state = nicheToState(niche);
+    state.currency = normalizeCurrency(state.currency);
+    saveState(state);
+    params.delete('niche');
+    const next = `${window.location.pathname}${params.toString() ? `?${params}` : ''}${window.location.hash}`;
+    window.history.replaceState({}, '', next);
+  } catch (err) {
+    console.warn('Niche preload failed', err);
+  }
+}
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -449,6 +470,7 @@ async function boot() {
   fillPaywallPerks();
 
   await hydrateKeyFromUrl();
+  await applyNicheFromQuery();
   await revalidateIfNeeded();
   refreshPro();
 

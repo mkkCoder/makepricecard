@@ -67,13 +67,26 @@ Track: **export attempts ÷ successful license activations** (via privacy-friend
 ```
 index.html        # Landing / marketing
 app.html          # Editor
-css/app.css
-css/landing.css
-js/…              # Editor modules
+{slug}/index.html # Generated niche SEO pages (via npm run gen:niches)
+src/data/niches.json
+data/niches.json  # Public copy for ?niche= preload
+scripts/gen-niches.mjs
+css/…
+js/…
 robots.txt
 sitemap.xml
 .nojekyll
 ```
+
+### Niche pages
+
+Edit `src/data/niches.json`, then run:
+
+```bash
+npm run gen:niches
+```
+
+Or `npm run build` / `npm run dev` (dev regenerates niches first). This writes `/{slug}/index.html`, syncs `data/niches.json` + `sitemap.xml`, and refreshes the home-page template hub.
 
 Live site: **https://fastpricecard.online/** (GitHub Pages fallback: `https://mkkcoder.github.io/makepricecard/`).
 
@@ -85,6 +98,7 @@ After deploying these static SEO assets:
 2. In [Google Search Console](https://search.google.com/search-console): add the **URL-prefix** property `https://fastpricecard.online/` (or Domain property for the whole apex).
 3. Verify ownership (HTML file upload, DNS TXT, or Google Analytics — pick one).
 4. Submit sitemap: `https://fastpricecard.online/sitemap.xml`.
-5. Request indexing for `/` and `/app.html` after the first crawl.
+5. Request indexing for `/`, `/app.html`, and a few niche URLs (e.g. `/salon-price-list/`, `/cafe-menu/`).
 6. Optional: set preferred domain / HTTPS already enforced in GitHub Pages settings.
 7. Share a link once and use [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) / [Twitter Card Validator](https://cards-dev.twitter.com/validator) to refresh `og:image` cache.
+8. After niche edits: run `npm run gen:niches`, commit generated `/{slug}/` pages + `sitemap.xml`, then redeploy.

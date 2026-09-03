@@ -1,0 +1,737 @@
+[
+  {
+    "title": "Salon Price List Template",
+    "slug": "salon-price-list",
+    "industry": "Hair salon",
+    "metaTitle": "Free Printable Salon Price List Template",
+    "metaDescription": "Create a printable hair salon price list in your browser. Free PDF & PNG export — no account. Customize cuts, color, and add-ons in seconds.",
+    "description": "Build a clean, printable salon price list for the chair, front desk, or Instagram story. FastPriceCard gives you a ready-made hair services template you can edit in the browser and export as PDF or PNG — no signup, no uploads.",
+    "business": {
+      "name": "Luna Salon",
+      "tagline": "Hair · Color · Care",
+      "phone": "+1 555 0142",
+      "instagram": "lunasalon"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Haircuts",
+        "items": [
+          { "name": "Women's Cut", "description": "Wash, cut & style", "price": "55" },
+          { "name": "Men's Cut", "description": "Wash, cut & finish", "price": "35" },
+          { "name": "Blow Dry", "description": "Style only", "price": "30" }
+        ]
+      },
+      {
+        "name": "Color",
+        "items": [
+          { "name": "Single Process", "description": "Root to tip", "price": "85" },
+          { "name": "Highlights", "description": "Partial foil", "price": "120" },
+          { "name": "Balayage", "description": "Custom blend", "price": "180" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I print a salon price list for free?",
+        "answer": "Yes. The free Minimalist template includes PDF and PNG export with a small footer credit. Pro removes the watermark and unlocks extra styles."
+      },
+      {
+        "question": "Does this work for hair color and add-on menus?",
+        "answer": "Yes. Add as many categories as you need — cuts, color, treatments, and add-ons — then export when the live preview looks right."
+      },
+      {
+        "question": "Will my salon prices leave my device?",
+        "answer": "No. FastPriceCard runs in your browser. Menu data stays in local storage unless you choose to export a file."
+      }
+    ]
+  },
+  {
+    "title": "Barbershop Price List",
+    "slug": "barbershop-price-list",
+    "industry": "Barbershop",
+    "metaTitle": "Free Barbershop Price List Template",
+    "metaDescription": "Printable barbershop price list maker. Cuts, fades, beard trims — export free PDF or PNG with no account required.",
+    "description": "Hang a sharp barbershop price list at the mirror or share a story-format card. Start from this fade-and-beard template, tweak prices, and download PDF or PNG in minutes.",
+    "business": {
+      "name": "Northside Barbers",
+      "tagline": "Cuts · Fades · Beards",
+      "phone": "+1 555 0188",
+      "instagram": "northsidebarbers"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Cuts",
+        "items": [
+          { "name": "Classic Cut", "description": "Scissor & clipper", "price": "32" },
+          { "name": "Skin Fade", "description": "Tapered finish", "price": "38" },
+          { "name": "Kids Cut", "description": "Under 12", "price": "25" }
+        ]
+      },
+      {
+        "name": "Beard & extras",
+        "items": [
+          { "name": "Beard Trim", "description": "Shape & line-up", "price": "18" },
+          { "name": "Hot Towel Shave", "description": "Straight razor", "price": "28" },
+          { "name": "Cut + Beard", "description": "Combo package", "price": "48" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I make a barbershop price board for free?",
+        "answer": "Yes. Customize this template and export PDF or PNG on the free tier. Pro unlocks more palettes and removes the watermark."
+      },
+      {
+        "question": "Can I use story format for Instagram?",
+        "answer": "Yes. Switch to 9:16 story format in the editor for social-ready price cards."
+      },
+      {
+        "question": "Do I need design software?",
+        "answer": "No. Edit text and prices in the browser — the live preview is what you export."
+      }
+    ]
+  },
+  {
+    "title": "Café Menu Template",
+    "slug": "cafe-menu",
+    "industry": "Café",
+    "metaTitle": "Free Printable Café Menu Template",
+    "metaDescription": "Design a printable café menu online. Coffee, tea, and pastry prices — free PDF & PNG export, no account needed.",
+    "description": "Lay out a café menu for the counter or a story post. This template starts with espresso drinks and pastries so you can swap in your own prices and print today.",
+    "business": {
+      "name": "Harbor Roast",
+      "tagline": "Coffee · Pastry · Slow mornings",
+      "phone": "+1 555 0160",
+      "instagram": "harborroast"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Espresso bar",
+        "items": [
+          { "name": "Espresso", "description": "Single / double", "price": "3.50" },
+          { "name": "Cappuccino", "description": "12 oz", "price": "4.75" },
+          { "name": "Latte", "description": "Oat milk available", "price": "5.25" }
+        ]
+      },
+      {
+        "name": "Bakery",
+        "items": [
+          { "name": "Croissant", "description": "Butter", "price": "3.75" },
+          { "name": "Banana Bread", "description": "Slice", "price": "4.00" },
+          { "name": "Cookie", "description": "Daily bake", "price": "2.50" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is this café menu template free to print?",
+        "answer": "Yes. Export PDF or PNG on the free plan. A small credit line appears unless you unlock Pro."
+      },
+      {
+        "question": "Can I add seasonal drinks?",
+        "answer": "Yes. Add categories and items anytime — changes autosave in your browser."
+      },
+      {
+        "question": "Does it support other currencies?",
+        "answer": "Yes. The editor includes 25 currencies so you can match your register."
+      }
+    ]
+  },
+  {
+    "title": "Bakery Price List",
+    "slug": "bakery-price-list",
+    "industry": "Bakery",
+    "metaTitle": "Free Bakery Price List & Menu Maker",
+    "metaDescription": "Printable bakery price list for breads, cakes, and pastries. Free PDF export — customize in your browser with no signup.",
+    "description": "Create a bakery price sheet for the display case or wholesale sheet. Start from breads and cakes, edit names and prices, then download a print-ready PDF.",
+    "business": {
+      "name": "Mill & Crumb",
+      "tagline": "Daily bread · Weekend cakes",
+      "phone": "+1 555 0191",
+      "instagram": "millandcrumb"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Bread",
+        "items": [
+          { "name": "Sourdough Loaf", "description": "900g", "price": "9" },
+          { "name": "Baguette", "description": "Daily bake", "price": "4" },
+          { "name": "Focaccia", "description": "Rosemary", "price": "7" }
+        ]
+      },
+      {
+        "name": "Sweets",
+        "items": [
+          { "name": "Cupcake", "description": "Each", "price": "3.50" },
+          { "name": "Layer Cake", "description": "6 inch", "price": "42" },
+          { "name": "Cookie Box", "description": "Half dozen", "price": "14" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I make a bakery menu without Canva?",
+        "answer": "Yes. Edit this template in the browser and export PDF or PNG — no design subscription required."
+      },
+      {
+        "question": "Can wholesale and retail share one list?",
+        "answer": "Use separate categories for retail and wholesale, or duplicate the card and tweak prices in the editor."
+      },
+      {
+        "question": "Is my recipe pricing uploaded?",
+        "answer": "No. Everything stays on your device until you download an export file."
+      }
+    ]
+  },
+  {
+    "title": "Spa Price List Template",
+    "slug": "spa-price-list",
+    "industry": "Spa",
+    "metaTitle": "Free Printable Spa Price List Template",
+    "metaDescription": "Make a spa treatment price list online. Facials, massage, packages — free PDF & PNG, no account.",
+    "description": "Publish a calm spa menu for the reception desk or booking page printout. Prefills common facials and massage durations so you can adjust durations and rates quickly.",
+    "business": {
+      "name": "Stillwater Spa",
+      "tagline": "Massage · Facials · Rituals",
+      "phone": "+1 555 0177",
+      "instagram": "stillwaterspa"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Massage",
+        "items": [
+          { "name": "Swedish 60 min", "description": "Full body", "price": "95" },
+          { "name": "Deep Tissue 60", "description": "Focused work", "price": "110" },
+          { "name": "Hot Stone 75", "description": "Warm basalt", "price": "135" }
+        ]
+      },
+      {
+        "name": "Facials",
+        "items": [
+          { "name": "Classic Facial", "description": "50 minutes", "price": "85" },
+          { "name": "Hydrating Facial", "description": "Glow treatment", "price": "105" },
+          { "name": "Couples Ritual", "description": "Side-by-side", "price": "220" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I print spa packages and add-ons?",
+        "answer": "Yes. Add package categories or à la carte add-ons — the layout compacts long lists for print."
+      },
+      {
+        "question": "Is there a free spa price list PDF?",
+        "answer": "Start from this template and export PDF on the free plan. Pro removes the watermark for client-facing prints."
+      },
+      {
+        "question": "Can guests see a digital version?",
+        "answer": "Export PNG for tablets or social stories, or print A4 for the lobby."
+      }
+    ]
+  },
+  {
+    "title": "Nail Salon Price List",
+    "slug": "nail-salon-price-list",
+    "industry": "Nail salon",
+    "metaTitle": "Free Nail Salon Price List Template",
+    "metaDescription": "Printable nail salon price list for manicures, pedicures, and gels. Free PDF export — edit in your browser.",
+    "description": "Build a nail menu clients can read at a glance. Manicures, pedicures, and gel upgrades are prefilled so you can match your chair rates and print.",
+    "business": {
+      "name": "Pink Line Nails",
+      "tagline": "Mani · Pedi · Gel",
+      "phone": "+1 555 0133",
+      "instagram": "pinklinenails"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Manicure",
+        "items": [
+          { "name": "Classic Mani", "description": "Shape & polish", "price": "28" },
+          { "name": "Gel Mani", "description": "2+ week wear", "price": "42" },
+          { "name": "Gel Removal", "description": "Soak-off", "price": "15" }
+        ]
+      },
+      {
+        "name": "Pedicure",
+        "items": [
+          { "name": "Classic Pedi", "description": "Soak & polish", "price": "38" },
+          { "name": "Gel Pedi", "description": "Long-wear color", "price": "52" },
+          { "name": "Add Nail Art", "description": "Per nail from", "price": "5" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I list gel and acrylic separately?",
+        "answer": "Yes. Create categories for each service type and price them independently."
+      },
+      {
+        "question": "Will this work as a nail salon menu board?",
+        "answer": "Export A4 PDF for a wall frame or story PNG for booking highlights."
+      },
+      {
+        "question": "Do I need an account?",
+        "answer": "No. Open the editor, customize, and export — FastPriceCard has no signup wall."
+      }
+    ]
+  },
+  {
+    "title": "Restaurant Menu Template",
+    "slug": "restaurant-menu",
+    "industry": "Restaurant",
+    "metaTitle": "Free Printable Restaurant Menu Maker",
+    "metaDescription": "Create a printable restaurant menu online. Starters, mains, desserts — free PDF & PNG, no account required.",
+    "description": "Draft a single-page restaurant menu for dinner service or takeaway inserts. Prefills starters, mains, and desserts so you can swap dishes and prices fast.",
+    "business": {
+      "name": "Cedar & Salt",
+      "tagline": "Seasonal plates · Local wine",
+      "phone": "+1 555 0155",
+      "instagram": "cedarandsalt"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Starters",
+        "items": [
+          { "name": "Soup of the Day", "description": "Ask your server", "price": "9" },
+          { "name": "House Salad", "description": "Citrus vinaigrette", "price": "12" },
+          { "name": "Grilled Bread", "description": "Whipped butter", "price": "8" }
+        ]
+      },
+      {
+        "name": "Mains",
+        "items": [
+          { "name": "Roast Chicken", "description": "Herb jus", "price": "26" },
+          { "name": "Catch of the Day", "description": "Market fish", "price": "32" },
+          { "name": "Mushroom Pasta", "description": "Parmesan", "price": "22" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I make a one-page restaurant menu PDF?",
+        "answer": "Yes. Design in the live preview and download PDF. Long menus can become multi-page A4 exports."
+      },
+      {
+        "question": "Is this only for fine dining?",
+        "answer": "No. Use it for bistros, takeaway inserts, food trucks, or tasting cards."
+      },
+      {
+        "question": "Can I change currency?",
+        "answer": "Yes — pick from 25 currencies in the editor before you export."
+      }
+    ]
+  },
+  {
+    "title": "Photography Price List",
+    "slug": "photography-price-list",
+    "industry": "Photography",
+    "metaTitle": "Free Photography Price List Template",
+    "metaDescription": "Printable photography price list for sessions and packages. Free PDF export — customize rates in your browser.",
+    "description": "Share clear session packages with clients. This photographer rate card starts with portrait and event packages you can rename and reprice.",
+    "business": {
+      "name": "Ava Reed Photo",
+      "tagline": "Portraits · Events · Film",
+      "phone": "+1 555 0120",
+      "instagram": "avareedphoto"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Sessions",
+        "items": [
+          { "name": "Portrait Hour", "description": "1 location", "price": "250" },
+          { "name": "Family Session", "description": "90 minutes", "price": "350" },
+          { "name": "Mini Session", "description": "20 minutes", "price": "125" }
+        ]
+      },
+      {
+        "name": "Events",
+        "items": [
+          { "name": "Wedding Half Day", "description": "Up to 5 hours", "price": "1800" },
+          { "name": "Wedding Full Day", "description": "Up to 10 hours", "price": "2800" },
+          { "name": "Second Shooter", "description": "Add-on", "price": "400" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can clients get a PDF photography price guide?",
+        "answer": "Yes. Export PDF after editing packages, or send a PNG for social DMs."
+      },
+      {
+        "question": "Can I list prints and albums?",
+        "answer": "Add a products category for albums, prints, and digital files."
+      },
+      {
+        "question": "Do prices upload to a server?",
+        "answer": "No. Your rate card stays local until you download it."
+      }
+    ]
+  },
+  {
+    "title": "Gym Price List",
+    "slug": "gym-membership-prices",
+    "industry": "Gym",
+    "metaTitle": "Free Gym Membership Price List Template",
+    "metaDescription": "Printable gym membership and class price list. Free PDF maker for monthly plans, day passes, and PT rates.",
+    "description": "Post membership tiers and personal training rates without a complicated CMS. Prefills monthly plans and day passes so front-desk staff always have a current sheet.",
+    "business": {
+      "name": "Forge Athletic",
+      "tagline": "Strength · Classes · PT",
+      "phone": "+1 555 0111",
+      "instagram": "forgeathletic"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Membership",
+        "items": [
+          { "name": "Day Pass", "description": "Open gym", "price": "20" },
+          { "name": "Monthly", "description": "Unlimited classes", "price": "79" },
+          { "name": "Annual", "description": "Best value", "price": "790" }
+        ]
+      },
+      {
+        "name": "Training",
+        "items": [
+          { "name": "PT Session", "description": "55 minutes", "price": "65" },
+          { "name": "PT 5-Pack", "description": "Save 10%", "price": "290" },
+          { "name": "Intro Assess", "description": "Form check", "price": "40" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I print gym membership prices for the desk?",
+        "answer": "Yes. Export A4 PDF and update whenever promotions change."
+      },
+      {
+        "question": "Can I include class packs?",
+        "answer": "Add a classes category for drop-ins, packs, and specialty sessions."
+      },
+      {
+        "question": "Is the template free?",
+        "answer": "Editing and PDF/PNG export are free on the Minimalist template."
+      }
+    ]
+  },
+  {
+    "title": "Tutoring Rates Sheet",
+    "slug": "tutoring-rates",
+    "industry": "Tutoring",
+    "metaTitle": "Free Tutoring Rates Price List Template",
+    "metaDescription": "Make a printable tutoring price list for hourly and package rates. Free PDF export — no account needed.",
+    "description": "Share clear tutoring rates with parents and students. Prefills hourly subjects and multi-session packs you can customize before exporting.",
+    "business": {
+      "name": "Bright Path Tutoring",
+      "tagline": "Math · Science · Writing",
+      "phone": "+1 555 0104",
+      "instagram": "brightpathtutors"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Hourly",
+        "items": [
+          { "name": "K–5 Tutoring", "description": "60 minutes", "price": "45" },
+          { "name": "Middle School", "description": "60 minutes", "price": "55" },
+          { "name": "High School / AP", "description": "60 minutes", "price": "70" }
+        ]
+      },
+      {
+        "name": "Packages",
+        "items": [
+          { "name": "4-Session Pack", "description": "Save $20", "price": "200" },
+          { "name": "8-Session Pack", "description": "Save $60", "price": "380" },
+          { "name": "Test Prep Block", "description": "2 hours", "price": "130" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I publish tutoring rates as a PDF?",
+        "answer": "Yes. Customize this sheet and download PDF or PNG from the free editor."
+      },
+      {
+        "question": "Can I show online vs in-person rates?",
+        "answer": "Use separate categories or note the format in each item description."
+      },
+      {
+        "question": "Do families need an app login?",
+        "answer": "No. You send or print the exported file — FastPriceCard is for making the list."
+      }
+    ]
+  },
+  {
+    "title": "Cleaning Service Prices",
+    "slug": "cleaning-service-prices",
+    "industry": "Cleaning service",
+    "metaTitle": "Free Cleaning Service Price List Template",
+    "metaDescription": "Printable cleaning price list for homes and offices. Free PDF maker for hourly rates and packages.",
+    "description": "Give clients a transparent cleaning rate card. Prefills standard cleans and deep-clean packages you can adjust by home size or hours.",
+    "business": {
+      "name": "ClearDay Cleaning",
+      "tagline": "Homes · Offices · Move-outs",
+      "phone": "+1 555 0199",
+      "instagram": "cleardayclean"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Homes",
+        "items": [
+          { "name": "Standard Clean", "description": "Up to 2 bed", "price": "120" },
+          { "name": "Deep Clean", "description": "First visit", "price": "220" },
+          { "name": "Move-out Clean", "description": "Empty home", "price": "280" }
+        ]
+      },
+      {
+        "name": "Add-ons",
+        "items": [
+          { "name": "Inside Oven", "description": "Add-on", "price": "45" },
+          { "name": "Inside Fridge", "description": "Add-on", "price": "35" },
+          { "name": "Hourly Extra", "description": "Per cleaner", "price": "45" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I make a cleaning quote sheet?",
+        "answer": "Use this as a base rate card, then customize per job in the editor before exporting."
+      },
+      {
+        "question": "Is commercial cleaning supported?",
+        "answer": "Yes — rename categories for offices, Airbnbs, or post-construction cleans."
+      },
+      {
+        "question": "Are prices stored online?",
+        "answer": "No. Data stays in your browser unless you export a file."
+      }
+    ]
+  },
+  {
+    "title": "Pet Grooming Price List",
+    "slug": "pet-grooming-price-list",
+    "industry": "Pet grooming",
+    "metaTitle": "Free Pet Grooming Price List Template",
+    "metaDescription": "Printable dog grooming price list by size and service. Free PDF & PNG export — no account.",
+    "description": "Post grooming rates by coat and size without wrestling a spreadsheet into a flyer. Prefills baths and full grooms for small, medium, and large dogs.",
+    "business": {
+      "name": "Paws & Polish",
+      "tagline": "Bath · Groom · Nails",
+      "phone": "+1 555 0180",
+      "instagram": "pawsandpolish"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Full groom",
+        "items": [
+          { "name": "Small Dog", "description": "Under 20 lb", "price": "55" },
+          { "name": "Medium Dog", "description": "20–50 lb", "price": "70" },
+          { "name": "Large Dog", "description": "50+ lb", "price": "90" }
+        ]
+      },
+      {
+        "name": "À la carte",
+        "items": [
+          { "name": "Bath & Brush", "description": "By size from", "price": "35" },
+          { "name": "Nail Trim", "description": "Dogs & cats", "price": "18" },
+          { "name": "Teeth Brush", "description": "Add-on", "price": "12" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I price by breed or coat?",
+        "answer": "Yes. Rename size tiers or add notes in descriptions for coat type and de-shedding."
+      },
+      {
+        "question": "Can I print a shop wall price list?",
+        "answer": "Export A4 PDF for the lobby or PNG for social booking posts."
+      },
+      {
+        "question": "Is the groomer template free?",
+        "answer": "Yes on the free Minimalist plan, with optional Pro styles later."
+      }
+    ]
+  },
+  {
+    "title": "Tattoo Studio Price Guide",
+    "slug": "tattoo-studio-price-list",
+    "industry": "Tattoo studio",
+    "metaTitle": "Free Tattoo Studio Price List Template",
+    "metaDescription": "Printable tattoo shop price guide for minimums, hourly rates, and piercings. Free PDF export online.",
+    "description": "Set expectations with a clear studio rate card — minimums, hourly work, and piercing add-ons. Edit artist names and rates, then print for the front desk.",
+    "business": {
+      "name": "Ink Harbor",
+      "tagline": "Custom · Flash · Piercing",
+      "phone": "+1 555 0148",
+      "instagram": "inkharbor"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Tattoo",
+        "items": [
+          { "name": "Shop Minimum", "description": "Small flash", "price": "80" },
+          { "name": "Hourly Rate", "description": "Custom work", "price": "150" },
+          { "name": "Half Day", "description": "4 hours", "price": "550" }
+        ]
+      },
+      {
+        "name": "Piercing",
+        "items": [
+          { "name": "Earlobe", "description": "Includes jewelry", "price": "40" },
+          { "name": "Cartilage", "description": "Includes jewelry", "price": "55" },
+          { "name": "Septum", "description": "Includes jewelry", "price": "65" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can each artist have different rates?",
+        "answer": "Create a category per artist or note rates in item descriptions, then export separate cards if needed."
+      },
+      {
+        "question": "Is a deposit policy includable?",
+        "answer": "Add a short note in the business tagline or a Policies category with text items."
+      },
+      {
+        "question": "Do I need design skills?",
+        "answer": "No — edit the template text and export when the preview looks right."
+      }
+    ]
+  },
+  {
+    "title": "Florist Price List",
+    "slug": "florist-price-list",
+    "industry": "Florist",
+    "metaTitle": "Free Florist Price List Template",
+    "metaDescription": "Printable florist price list for bouquets, arrangements, and weddings. Free PDF & PNG — no signup.",
+    "description": "Share bouquet and arrangement prices for the cooler door or wedding inquiries. Prefills everyday bunches and event packages you can reprice seasonally.",
+    "business": {
+      "name": "Stem & Stone",
+      "tagline": "Bouquets · Events · Plants",
+      "phone": "+1 555 0172",
+      "instagram": "stemandstone"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Everyday",
+        "items": [
+          { "name": "Wrapped Bouquet", "description": "Market stems", "price": "45" },
+          { "name": "Vase Arrangement", "description": "Medium", "price": "65" },
+          { "name": "Bud Vase Trio", "description": "Gift set", "price": "38" }
+        ]
+      },
+      {
+        "name": "Events",
+        "items": [
+          { "name": "Bridal Bouquet", "description": "Custom", "price": "180" },
+          { "name": "Centerpiece", "description": "Low & lush", "price": "95" },
+          { "name": "Boutonniere", "description": "Each", "price": "18" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I update prices for seasons?",
+        "answer": "Yes. Edit in the browser anytime — autosave keeps the latest list on this device."
+      },
+      {
+        "question": "Can I send a PDF to wedding clients?",
+        "answer": "Export PDF after customizing event packages, or PNG for email attachments."
+      },
+      {
+        "question": "Is the florist template free?",
+        "answer": "Yes for the Minimalist look and standard exports."
+      }
+    ]
+  },
+  {
+    "title": "Yoga Class Prices",
+    "slug": "yoga-class-prices",
+    "industry": "Yoga studio",
+    "metaTitle": "Free Yoga Class Price List Template",
+    "metaDescription": "Printable yoga studio price list for drop-ins, class packs, and memberships. Free PDF export online.",
+    "description": "Post drop-in and membership rates for your yoga studio. Prefills common packs so members see clear options on the wall or in a story graphic.",
+    "business": {
+      "name": "Riverbend Yoga",
+      "tagline": "Flow · Breath · Community",
+      "phone": "+1 555 0166",
+      "instagram": "riverbendyoga"
+    },
+    "currency": "USD",
+    "template": "minimalist",
+    "format": "a4",
+    "prefilledItems": [
+      {
+        "name": "Classes",
+        "items": [
+          { "name": "Drop-in", "description": "Single class", "price": "22" },
+          { "name": "5-Class Pack", "description": "90-day expiry", "price": "95" },
+          { "name": "10-Class Pack", "description": "120-day expiry", "price": "170" }
+        ]
+      },
+      {
+        "name": "Membership",
+        "items": [
+          { "name": "Unlimited Monthly", "description": "All group classes", "price": "129" },
+          { "name": "Student Monthly", "description": "Valid ID", "price": "99" },
+          { "name": "Private Session", "description": "60 minutes", "price": "85" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I print yoga membership prices?",
+        "answer": "Yes. Customize this template and export a lobby PDF or story PNG."
+      },
+      {
+        "question": "Can I add workshop pricing?",
+        "answer": "Add a workshops category with one-off event prices anytime."
+      },
+      {
+        "question": "Do students need to create an account here?",
+        "answer": "No. FastPriceCard only builds the price sheet — booking stays on your usual platform."
+      }
+    ]
+  }
+]

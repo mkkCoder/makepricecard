@@ -163,7 +163,7 @@ export function renderPreview(root, state, { isPro }) {
         <div class="card-fit-inner">
           <header class="card-header">
             ${logo}
-            <h1 class="card-business">${escapeHtml(state.business.name || 'Your Business')}</h1>
+            <p class="card-business">${escapeHtml(state.business.name || 'Your Business')}</p>
             ${
               state.business.tagline
                 ? `<p class="card-tagline">${escapeHtml(state.business.tagline)}</p>`
