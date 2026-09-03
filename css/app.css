@@ -708,9 +708,10 @@ label.field select:focus,
   color: var(--danger);
 }
 
-/* Templates */
+/* Templates — always set background-color (html2canvas often skips gradients) */
 .tpl-minimalist {
-  background: #fafafa;
+  background-color: #fafafa;
+  background-image: none;
   color: #121212;
   font-family: var(--font-card-body);
 }
@@ -720,7 +721,8 @@ label.field select:focus,
 }
 
 .tpl-cafe {
-  background: linear-gradient(180deg, #f6ead7 0%, #efe0c8 100%);
+  background-color: #f1e2c9;
+  background-image: linear-gradient(180deg, #f6ead7 0%, #efe0c8 100%);
   color: #3b2416;
 }
 
@@ -734,7 +736,8 @@ label.field select:focus,
 }
 
 .tpl-luxury {
-  background: radial-gradient(circle at top, #2a241b 0%, #12100c 55%);
+  background-color: #12100c;
+  background-image: radial-gradient(circle at top, #2a241b 0%, #12100c 55%);
   color: #f3e6c8;
 }
 
@@ -748,7 +751,8 @@ label.field select:focus,
 }
 
 .tpl-pastel {
-  background: linear-gradient(165deg, #fff5f7 0%, #eef6f1 100%);
+  background-color: #f5eef2;
+  background-image: linear-gradient(165deg, #fff5f7 0%, #eef6f1 100%);
   color: #5a3d4a;
 }
 
@@ -758,7 +762,8 @@ label.field select:focus,
 }
 
 .tpl-neon {
-  background: #0b0f1a;
+  background-color: #0b0f1a;
+  background-image: none;
   color: #e8fff6;
 }
 

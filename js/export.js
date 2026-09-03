@@ -58,6 +58,65 @@ export function stampWatermark(canvas, text = WATERMARK_TEXT) {
   ctx.restore();
 }
 
+/** Solid fallbacks — html2canvas often drops CSS gradients. */
+const TEMPLATE_EXPORT_BG = {
+  'tpl-minimalist': '#fafafa',
+  'tpl-cafe': '#f1e2c9',
+  'tpl-luxury': '#12100c',
+  'tpl-pastel': '#f5eef2',
+  'tpl-neon': '#0b0f1a',
+};
+
+function exportBackgroundFor(el) {
+  if (!el?.classList) return '#ffffff';
+  for (const [cls, color] of Object.entries(TEMPLATE_EXPORT_BG)) {
+    if (el.classList.contains(cls)) return color;
+  }
+  return '#ffffff';
+}
+
+/** Paint capture onto an opaque template fill (fixes transparent / dropped gradients). */
+function compositeOnBackground(source, fill) {
+  const out = document.createElement('canvas');
+  out.width = source.width;
+  out.height = source.height;
+  const ctx = out.getContext('2d');
+  if (!ctx) return source;
+  ctx.fillStyle = fill || '#ffffff';
+  ctx.fillRect(0, 0, out.width, out.height);
+  ctx.drawImage(source, 0, 0);
+  return out;
+}
+
+function flattenCloneCard(original, el) {
+  el.classList.remove('is-multipage', 'is-scaled');
+  el.style.zoom = '1';
+  el.style.transform = 'none';
+  el.style.opacity = '1';
+
+  const bg = exportBackgroundFor(original) || exportBackgroundFor(el);
+  el.style.setProperty('background', bg, 'important');
+  el.style.setProperty('background-image', 'none', 'important');
+  el.style.setProperty('background-color', bg, 'important');
+
+  // Keep live text colors so dark templates stay readable
+  try {
+    const rootColor = getComputedStyle(original).color;
+    if (rootColor) el.style.setProperty('color', rootColor, 'important');
+  } catch {
+    /* ignore */
+  }
+
+  el.querySelectorAll('.card-fit-outer, .card-fit-inner, .card-header, .card-body').forEach((n) => {
+    n.style.setProperty('background', 'transparent', 'important');
+    n.style.setProperty('background-image', 'none', 'important');
+    n.style.opacity = '1';
+    n.style.transform = 'none';
+  });
+
+  el.querySelectorAll('.card-watermark, .card-watermark-overlay').forEach((n) => n.remove());
+}
+
 async function captureNode(node, { watermark } = { watermark: false }) {
   await waitFonts();
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
@@ -66,27 +125,40 @@ async function captureNode(node, { watermark } = { watermark: false }) {
     throw new Error('html2canvas missing — hard-refresh the page');
   }
 
-  const canvas = await html2canvas(node, {
-    scale: 2,
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#ffffff',
-    logging: false,
-    scrollX: 0,
-    scrollY: 0,
-    onclone: (doc) => {
-      const el = doc.getElementById('price-card') || doc.querySelector('.price-card');
-      if (!el) return;
-      el.classList.remove('is-multipage', 'is-scaled');
-      el.style.zoom = '1';
-      el.style.transform = 'none';
+  const fill = exportBackgroundFor(node);
+  const prevCss = node.style.cssText;
+  // Mutate live node too — more reliable than onclone alone for html2canvas
+  node.style.setProperty('background', fill, 'important');
+  node.style.setProperty('background-image', 'none', 'important');
+  node.style.setProperty('background-color', fill, 'important');
 
-      // Strip preview watermarks; free exports are stamped on the canvas below
-      el.querySelectorAll('.card-watermark, .card-watermark-overlay').forEach((n) => n.remove());
-    },
-  });
+  let raw;
+  try {
+    raw = await html2canvas(node, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: fill,
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      onclone: (clonedDoc, clonedNode) => {
+        const el =
+          (clonedNode?.id === 'price-card' ? clonedNode : null) ||
+          clonedNode?.closest?.('#price-card') ||
+          clonedDoc.getElementById('price-card') ||
+          clonedDoc.querySelector('.price-card');
+        if (!el) return;
+        flattenCloneCard(node, el);
+      },
+    });
+  } finally {
+    node.style.cssText = prevCss;
+  }
 
-  // Enforce in generation logic (Pro skips this)
+  // Always composite so PDF/PNG share the same opaque background
+  const canvas = compositeOnBackground(raw, fill);
+
   if (watermark) {
     stampWatermark(canvas, WATERMARK_TEXT);
   }
@@ -164,7 +236,9 @@ export async function makePdfBlob(cardEl, format = 'a4', { isPro = false } = {})
   const canvas = await captureNode(cardEl, { watermark: !isPro });
   if (!canvas.width || !canvas.height) throw new Error('Empty capture');
 
-  const imgData = canvas.toDataURL('image/jpeg', 0.92);
+  // PNG preserves dark template colors better than JPEG
+  const imgData = canvas.toDataURL('image/png');
+  const fill = exportBackgroundFor(cardEl);
   const isStory = format === 'story';
   const pdf = new PDF({
     unit: 'mm',
@@ -178,17 +252,28 @@ export async function makePdfBlob(cardEl, format = 'a4', { isPro = false } = {})
   const imgW = pageW;
   const imgH = (canvas.height * pageW) / canvas.width;
 
+  const paintPage = (y) => {
+    const hex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fill);
+    if (hex) {
+      pdf.setFillColor(parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16));
+    } else {
+      pdf.setFillColor(255, 255, 255);
+    }
+    pdf.rect(0, 0, pageW, pageH, 'F');
+    pdf.addImage(imgData, 'PNG', 0, y, imgW, imgH, undefined, 'FAST');
+  };
+
   if (imgH <= pageH + 0.5) {
-    pdf.addImage(imgData, 'JPEG', 0, 0, imgW, imgH, undefined, 'FAST');
+    paintPage(0);
   } else {
     let heightLeft = imgH;
     let y = 0;
-    pdf.addImage(imgData, 'JPEG', 0, y, imgW, imgH, undefined, 'FAST');
+    paintPage(y);
     heightLeft -= pageH;
     while (heightLeft > 0.5) {
       y -= pageH;
       pdf.addPage();
-      pdf.addImage(imgData, 'JPEG', 0, y, imgW, imgH, undefined, 'FAST');
+      paintPage(y);
       heightLeft -= pageH;
     }
   }
