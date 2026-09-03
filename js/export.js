@@ -11,7 +11,6 @@ function waitFonts() {
 
 async function captureNode(node) {
   await waitFonts();
-  // Ensure layout settles after format switch
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 
   const canvas = await html2canvas(node, {
@@ -19,6 +18,9 @@ async function captureNode(node) {
     useCORS: true,
     backgroundColor: null,
     logging: false,
+    // Capture full multipage height (not just the clipped viewport)
+    height: node.scrollHeight,
+    windowHeight: node.scrollHeight,
   });
   return canvas;
 }
@@ -36,23 +38,33 @@ export async function downloadPng(cardEl, filename = 'price-card.png') {
 export async function downloadPdf(cardEl, format = 'a4', filename = 'price-card.pdf') {
   if (!cardEl) throw new Error('Preview not ready');
   if (typeof html2pdf === 'undefined') {
-    // Fallback: PNG via canvas if html2pdf missing
     await downloadPng(cardEl, filename.replace(/\.pdf$/i, '.png'));
     return;
   }
 
   const isStory = format === 'story';
+  const multipage = cardEl.classList.contains('is-multipage');
+
   const opt = {
     margin: 0,
     filename,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, logging: false },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      height: cardEl.scrollHeight,
+      windowHeight: cardEl.scrollHeight,
+    },
     jsPDF: {
       unit: 'mm',
       format: isStory ? [108, 192] : 'a4',
       orientation: 'portrait',
     },
-    pagebreak: { mode: ['avoid-all'] },
+    // Single-frame cards: keep one page. Long A4: allow natural page breaks.
+    pagebreak: multipage
+      ? { mode: ['css', 'legacy'], avoid: ['.card-header', '.card-item', '.card-watermark'] }
+      : { mode: ['avoid-all'] },
   };
 
   await html2pdf().set(opt).from(cardEl).save();

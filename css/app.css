@@ -440,12 +440,16 @@ label.field select:focus,
 
 /* —— Price card —— */
 .price-card {
+  --card-density: 1;
+  --card-scale: 1;
   width: min(100%, 420px);
   background: #fff;
   color: #111;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: width 0.35s ease, aspect-ratio 0.35s ease, background 0.3s ease, color 0.3s ease;
   animation: cardIn 0.45s ease both;
 }
@@ -460,41 +464,100 @@ label.field select:focus,
   width: min(100%, 320px);
 }
 
+/* Long A4 menus grow into additional pages instead of clipping */
+.price-card.format-a4.is-multipage {
+  aspect-ratio: auto;
+  height: auto;
+  min-height: calc(min(100%, 420px) * 297 / 210);
+  overflow: visible;
+  --page-h: 594px;
+}
+
+.price-card.format-a4.is-multipage::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--page-h) - 1px),
+    color-mix(in srgb, currentColor 28%, transparent) calc(var(--page-h) - 1px),
+    color-mix(in srgb, currentColor 28%, transparent) var(--page-h)
+  );
+}
+
+.card-fit-outer {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.price-card.is-multipage .card-fit-outer {
+  overflow: visible;
+  flex: 0 0 auto;
+}
+
+.card-fit-inner {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-card.is-scaled .card-fit-outer {
+  overflow: hidden;
+}
+
+.price-card.is-scaled .card-fit-inner {
+  /* zoom shrinks layout + paint (Chromium/Safari); keeps content inside the frame */
+  zoom: var(--card-scale);
+}
+
+.price-card.is-scaled .card-body {
+  overflow: visible;
+}
+
 .card-header {
-  padding: 1.35rem 1.25rem 0.85rem;
+  padding: calc(1.35rem * var(--card-density)) calc(1.25rem * var(--card-density))
+    calc(0.85rem * var(--card-density));
   text-align: center;
+  flex-shrink: 0;
 }
 
 .card-logo {
-  max-height: 52px;
-  max-width: 140px;
+  max-height: calc(52px * var(--card-density));
+  max-width: calc(140px * var(--card-density));
   object-fit: contain;
-  margin: 0 auto 0.65rem;
+  margin: 0 auto calc(0.65rem * var(--card-density));
   display: block;
 }
 
 .card-business {
   margin: 0;
   font-family: var(--font-card);
-  font-size: 1.55rem;
+  font-size: calc(1.55rem * var(--card-density));
   letter-spacing: -0.02em;
   line-height: 1.15;
 }
 
 .card-tagline {
-  margin: 0.35rem 0 0;
+  margin: calc(0.35rem * var(--card-density)) 0 0;
   font-family: var(--font-card-body);
-  font-size: 0.85rem;
+  font-size: calc(0.85rem * var(--card-density));
   opacity: 0.75;
 }
 
 .card-contact {
-  margin-top: 0.55rem;
+  margin-top: calc(0.55rem * var(--card-density));
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: calc(0.35rem * var(--card-density));
   justify-content: center;
-  font-size: 0.72rem;
+  font-size: calc(0.72rem * var(--card-density));
   letter-spacing: 0.04em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -505,57 +568,70 @@ label.field select:focus,
 }
 
 .card-body {
-  padding: 0.35rem 1.25rem 1.4rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding: calc(0.35rem * var(--card-density)) calc(1.25rem * var(--card-density))
+    calc(0.9rem * var(--card-density));
+}
+
+.price-card.is-multipage .card-body {
+  overflow: visible;
+  flex: 0 0 auto;
 }
 
 .card-category {
-  margin-top: 0.85rem;
+  margin-top: calc(0.85rem * var(--card-density));
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .card-category-title {
-  margin: 0 0 0.45rem;
+  margin: 0 0 calc(0.45rem * var(--card-density));
   font-family: var(--font-card);
-  font-size: 0.95rem;
+  font-size: calc(0.95rem * var(--card-density));
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-bottom: 1px solid currentColor;
-  padding-bottom: 0.25rem;
+  padding-bottom: calc(0.25rem * var(--card-density));
   opacity: 0.9;
 }
 
 .card-item {
-  margin: 0.45rem 0;
+  margin: calc(0.45rem * var(--card-density)) 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .card-item-top {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 0.35rem;
+  gap: calc(0.35rem * var(--card-density));
   align-items: end;
 }
 
 .card-item-name {
   font-family: var(--font-card-body);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--card-density));
 }
 
 .card-item-dots {
   border-bottom: 1px dotted currentColor;
   opacity: 0.35;
-  margin-bottom: 0.25rem;
+  margin-bottom: calc(0.25rem * var(--card-density));
 }
 
 .card-item-price {
   font-family: var(--font-card);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: calc(0.92rem * var(--card-density));
   white-space: nowrap;
 }
 
 .card-item-desc {
-  margin: 0.15rem 0 0;
-  font-size: 0.72rem;
+  margin: calc(0.15rem * var(--card-density)) 0 0;
+  font-size: calc(0.72rem * var(--card-density));
   opacity: 0.65;
   line-height: 1.35;
 }
@@ -563,20 +639,25 @@ label.field select:focus,
 .card-empty {
   text-align: center;
   opacity: 0.5;
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--card-density));
 }
 
 .card-watermark {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: static;
+  flex-shrink: 0;
+  margin-top: auto;
   padding: 0.4rem 0.75rem;
   text-align: center;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
   background: color-mix(in srgb, currentColor 8%, transparent);
   opacity: 0.85;
+}
+
+#fit-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--accent);
 }
 
 /* Templates */
