@@ -1,7 +1,6 @@
 /**
  * Export PDF / PNG from the live preview card.
- * Gating: watermark / templates enforced in render + state, not by hiding buttons.
- * Client-side checks are bypassable — intentional for zero-backend.
+ * Canvas-first PDF is more reliable than html2pdf pagebreak modes on CSS cards.
  */
 
 function waitFonts() {
@@ -9,24 +8,41 @@ function waitFonts() {
   return Promise.resolve();
 }
 
+function JsPDF() {
+  // html2pdf.bundle and some CDNs expose this differently
+  if (window.jspdf?.jsPDF) return window.jspdf.jsPDF;
+  if (typeof window.jsPDF === 'function') return window.jsPDF;
+  return null;
+}
+
 async function captureNode(node) {
   await waitFonts();
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 
-  const canvas = await html2canvas(node, {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: null,
-    logging: false,
-    // Capture full multipage height (not just the clipped viewport)
-    height: node.scrollHeight,
-    windowHeight: node.scrollHeight,
-  });
-  return canvas;
+  // Temporarily neutralize zoom/scale quirks for capture
+  const prevZoom = node.style.zoom;
+  const scaled = node.classList.contains('is-scaled');
+  if (scaled) node.style.zoom = '1';
+
+  try {
+    return await html2canvas(node, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      logging: false,
+      height: Math.ceil(node.scrollHeight),
+      windowHeight: Math.ceil(node.scrollHeight),
+      scrollX: 0,
+      scrollY: 0,
+    });
+  } finally {
+    if (scaled) node.style.zoom = prevZoom;
+  }
 }
 
 export async function downloadPng(cardEl, filename = 'price-card.png') {
   if (!cardEl) throw new Error('Preview not ready');
+  if (typeof html2canvas === 'undefined') throw new Error('html2canvas missing');
   const canvas = await captureNode(cardEl);
   const dataUrl = canvas.toDataURL('image/png');
   const a = document.createElement('a');
@@ -37,35 +53,60 @@ export async function downloadPng(cardEl, filename = 'price-card.png') {
 
 export async function downloadPdf(cardEl, format = 'a4', filename = 'price-card.pdf') {
   if (!cardEl) throw new Error('Preview not ready');
-  if (typeof html2pdf === 'undefined') {
-    await downloadPng(cardEl, filename.replace(/\.pdf$/i, '.png'));
-    return;
+  if (typeof html2canvas === 'undefined') throw new Error('html2canvas missing');
+
+  const PDF = JsPDF();
+  if (!PDF) {
+    // Last resort: try html2pdf helper if jsPDF isn't global
+    if (typeof html2pdf !== 'undefined') {
+      await html2pdf()
+        .set({
+          margin: 0,
+          filename,
+          image: { type: 'jpeg', quality: 0.95 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false },
+          jsPDF: {
+            unit: 'mm',
+            format: format === 'story' ? [108, 192] : 'a4',
+            orientation: 'portrait',
+          },
+        })
+        .from(cardEl)
+        .save();
+      return;
+    }
+    throw new Error('PDF engine missing');
   }
 
+  const canvas = await captureNode(cardEl);
+  const imgData = canvas.toDataURL('image/jpeg', 0.95);
   const isStory = format === 'story';
-  const multipage = cardEl.classList.contains('is-multipage');
+  const pdf = new PDF({
+    unit: 'mm',
+    format: isStory ? [108, 192] : 'a4',
+    orientation: 'portrait',
+  });
 
-  const opt = {
-    margin: 0,
-    filename,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      logging: false,
-      height: cardEl.scrollHeight,
-      windowHeight: cardEl.scrollHeight,
-    },
-    jsPDF: {
-      unit: 'mm',
-      format: isStory ? [108, 192] : 'a4',
-      orientation: 'portrait',
-    },
-    // Single-frame cards: keep one page. Long A4: allow natural page breaks.
-    pagebreak: multipage
-      ? { mode: ['css', 'legacy'], avoid: ['.card-header', '.card-item', '.card-watermark'] }
-      : { mode: ['avoid-all'] },
-  };
+  const pageW = pdf.internal.pageSize.getWidth();
+  const pageH = pdf.internal.pageSize.getHeight();
+  const imgW = pageW;
+  const imgH = (canvas.height * pageW) / canvas.width;
 
-  await html2pdf().set(opt).from(cardEl).save();
+  // Single page if it fits (or story); otherwise tile across A4 pages
+  if (imgH <= pageH + 0.5) {
+    pdf.addImage(imgData, 'JPEG', 0, 0, imgW, imgH);
+  } else {
+    let heightLeft = imgH;
+    let y = 0;
+    pdf.addImage(imgData, 'JPEG', 0, y, imgW, imgH);
+    heightLeft -= pageH;
+    while (heightLeft > 0.5) {
+      y -= pageH;
+      pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', 0, y, imgW, imgH);
+      heightLeft -= pageH;
+    }
+  }
+
+  pdf.save(filename);
 }

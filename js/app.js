@@ -355,17 +355,33 @@ function bindEditor() {
   $('#btn-export-json')?.addEventListener('click', () => exportJson(state));
   $('#btn-export-csv')?.addEventListener('click', () => exportCsv(state));
 
+  function setExportStatus(message, kind = '') {
+    const el = $('#export-status');
+    if (!el) return;
+    el.hidden = !message;
+    el.textContent = message || '';
+    el.className = `hint${kind ? ` is-${kind}` : ''}`;
+  }
+
   $('#btn-pdf')?.addEventListener('click', async () => {
     const card = $('#price-card');
     const btn = $('#btn-pdf');
     btn.disabled = true;
+    setExportStatus('Preparing PDF…', 'busy');
     try {
       await downloadPdf(card, state.format);
+      setExportStatus('PDF downloaded.', 'ok');
     } catch (err) {
       console.error(err);
-      alert('PDF export failed. Try PNG instead.');
+      setExportStatus('PDF export failed. Try PNG instead.', 'err');
     } finally {
       btn.disabled = false;
+      setTimeout(() => {
+        const el = $('#export-status');
+        if (el && !el.classList.contains('is-err')) {
+          setExportStatus('');
+        }
+      }, 2500);
     }
   });
 
@@ -373,13 +389,21 @@ function bindEditor() {
     const card = $('#price-card');
     const btn = $('#btn-png');
     btn.disabled = true;
+    setExportStatus('Preparing PNG…', 'busy');
     try {
       await downloadPng(card);
+      setExportStatus('PNG downloaded.', 'ok');
     } catch (err) {
       console.error(err);
-      alert('PNG export failed.');
+      setExportStatus('PNG export failed. Try again.', 'err');
     } finally {
       btn.disabled = false;
+      setTimeout(() => {
+        const el = $('#export-status');
+        if (el && !el.classList.contains('is-err')) {
+          setExportStatus('');
+        }
+      }, 2500);
     }
   });
 }

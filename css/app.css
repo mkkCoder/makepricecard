@@ -662,6 +662,23 @@ label.field select:focus,
   color: var(--accent);
 }
 
+#export-status {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+}
+
+#export-status.is-busy {
+  color: var(--ink-soft);
+}
+
+#export-status.is-ok {
+  color: var(--accent);
+}
+
+#export-status.is-err {
+  color: var(--danger);
+}
+
 /* Templates */
 .tpl-minimalist {
   background: #fafafa;
