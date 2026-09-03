@@ -4,6 +4,21 @@ import { openCheckout, validateAndStore } from './license.js';
 let dialog;
 let onUnlocked = () => {};
 
+function termsAccepted() {
+  return Boolean(dialog?.querySelector('#accept-terms')?.checked);
+}
+
+function syncCheckoutEnabled() {
+  const checkout = dialog?.querySelector('[data-checkout]');
+  const hint = dialog?.querySelector('#accept-terms-hint');
+  if (!checkout) return;
+  const ok = termsAccepted();
+  checkout.classList.toggle('is-disabled', !ok);
+  checkout.setAttribute('aria-disabled', ok ? 'false' : 'true');
+  checkout.tabIndex = ok ? 0 : -1;
+  if (hint) hint.hidden = ok;
+}
+
 export function initPaywall({ onUnlock }) {
   onUnlocked = onUnlock;
   dialog = document.getElementById('paywall-modal');
@@ -13,8 +28,17 @@ export function initPaywall({ onUnlock }) {
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) closePaywall();
   });
+
+  dialog.querySelector('#accept-terms')?.addEventListener('change', syncCheckoutEnabled);
+
   dialog.querySelector('[data-checkout]')?.addEventListener('click', (e) => {
     e.preventDefault();
+    if (!termsAccepted()) {
+      const hint = dialog.querySelector('#accept-terms-hint');
+      if (hint) hint.hidden = false;
+      dialog.querySelector('#accept-terms')?.focus();
+      return;
+    }
     openCheckout();
   });
 
@@ -45,6 +69,8 @@ export function initPaywall({ onUnlock }) {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && dialog?.open) closePaywall();
   });
+
+  syncCheckoutEnabled();
 }
 
 export function openPaywall(reason = 'pro') {
@@ -59,6 +85,9 @@ export function openPaywall(reason = 'pro') {
   if (title) title.textContent = reasons[reason] || reasons.pro;
   const checkout = dialog.querySelector('[data-checkout]');
   if (checkout) checkout.href = CHECKOUT_URL;
+  const box = dialog.querySelector('#accept-terms');
+  if (box) box.checked = false;
+  syncCheckoutEnabled();
   if (typeof dialog.showModal === 'function') dialog.showModal();
   else dialog.setAttribute('open', '');
 }

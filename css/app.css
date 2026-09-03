@@ -807,6 +807,36 @@ label.field select:focus,
   gap: 0.55rem;
 }
 
+.paywall-accept {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.paywall-accept input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.paywall-accept a {
+  color: var(--accent);
+}
+
+a.paywall-checkout {
+  text-align: center;
+  text-decoration: none;
+}
+
+a.paywall-checkout.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 #license-form {
   display: grid;
   gap: 0.45rem;

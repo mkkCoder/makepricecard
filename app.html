@@ -138,31 +138,42 @@
         </p>
         <ul id="perk-list"></ul>
         <div class="paywall-actions">
+          <label class="paywall-accept">
+            <input type="checkbox" id="accept-terms" />
+            <span>
+              I agree to the
+              <a href="terms.html" target="_blank" rel="noopener">Terms</a>
+              and
+              <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+            </span>
+          </label>
           <a
-            class="btn-primary"
+            class="btn-primary paywall-checkout"
             data-checkout
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            style="text-align: center; text-decoration: none"
+            aria-disabled="true"
+            tabindex="-1"
             >Get License ($10)</a
           >
-          <p class="hint" style="margin: 0">
-            By purchasing you agree to the
-            <a href="terms.html" target="_blank" rel="noopener">Terms</a>
-            and
-            <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+          <p class="hint" id="accept-terms-hint" hidden>
+            Check the box above to continue to checkout.
           </p>
           <form id="license-form">
-            <label class="field" for="license-key">Enter license key</label>
+            <label class="field" for="license-key">Already have a key?</label>
             <input
               id="license-key"
               name="license-key"
-              placeholder="Paste key (e.g. FPC-XXXX-XXXX)"
+              placeholder="Paste license key"
               autocomplete="off"
               spellcheck="false"
             />
             <button type="submit" class="btn-secondary" data-activate>Activate</button>
+            <p class="hint" style="margin: 0">
+              Activating a key means you already purchased and agree to the
+              <a href="terms.html" target="_blank" rel="noopener">Terms</a>.
+            </p>
             <p class="license-status" id="license-status" role="status"></p>
           </form>
         </div>
