@@ -7,7 +7,7 @@ Printable price list & menu generator. Runs entirely in the browser — no backe
 | Decision | Choice |
 |---|---|
 | Routing / base path | Relative URLs — works on apex or `/repo/` project Pages |
-| Billing | One-time $19 lifetime Pro unlock |
+| Billing | One-time $10 lifetime Pro unlock |
 | Paywall boundary | Free: Minimalist template + watermarked exports. Pro: all templates, logo, no watermark |
 | Stack | Vanilla ES modules + local CSS (html2canvas / html2pdf via CDN) |
 | Free data export | JSON + CSV always available (no license) |

@@ -8,10 +8,11 @@ import {
 } from './license.js';
 import { initPaywall, openPaywall, proPerkList } from './paywall.js';
 import { renderPreview } from './preview.js';
-import { defaultState, moveItem, uid } from './state.js';
+import { defaultState, moveItem, normalizeCurrency, uid } from './state.js';
 import { exportCsv, exportJson, loadState, saveState } from './storage.js';
 
 let state = loadState() || defaultState();
+state.currency = normalizeCurrency(state.currency);
 let isPro = false;
 let saveTimer = null;
 
@@ -67,11 +68,11 @@ function renderEditor() {
   if (curSel && !curSel.dataset.ready) {
     curSel.innerHTML = CURRENCIES.map(
       (c) =>
-        `<option value="${c.symbol}">${c.symbol} ${c.code}</option>`
+        `<option value="${c.code}">${c.symbol} ${c.code} — ${c.name}</option>`
     ).join('');
     curSel.dataset.ready = '1';
   }
-  if (curSel) curSel.value = state.currency;
+  if (curSel) curSel.value = normalizeCurrency(state.currency);
 
   $('#biz-name').value = state.business.name || '';
   $('#biz-tagline').value = state.business.tagline || '';
@@ -192,7 +193,7 @@ function bindEditor() {
     else if (t.id === 'biz-tagline') state.business.tagline = t.value;
     else if (t.id === 'biz-phone') state.business.phone = t.value;
     else if (t.id === 'biz-ig') state.business.instagram = t.value.replace(/^@/, '');
-    else if (t.id === 'currency') state.currency = t.value;
+    else if (t.id === 'currency') state.currency = normalizeCurrency(t.value);
     else if (t.matches('[data-cat-field="name"]')) {
       const ci = Number(t.dataset.ci);
       state.categories[ci].name = t.value;

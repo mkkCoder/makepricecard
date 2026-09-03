@@ -12,7 +12,7 @@ export function defaultState() {
       phone: '+1 555 0100',
       instagram: 'studionorth',
     },
-    currency: '₪',
+    currency: 'ILS',
     categories: [
       {
         id: uid('cat'),
@@ -51,10 +51,21 @@ export function defaultState() {
   };
 }
 
+/** Normalize legacy symbol saves (e.g. "₪") to ISO codes. */
+export function normalizeCurrency(value) {
+  if (!value) return 'ILS';
+  const asCode = CURRENCIES.find((c) => c.code === value);
+  if (asCode) return asCode.code;
+  if (value === '$') return 'USD';
+  const matches = CURRENCIES.filter((c) => c.symbol === value);
+  if (matches.length === 1) return matches[0].code;
+  if (matches.length > 1) return matches[0].code;
+  return 'ILS';
+}
+
 export function currencySymbol(codeOrSymbol) {
-  const found = CURRENCIES.find(
-    (c) => c.symbol === codeOrSymbol || c.code === codeOrSymbol
-  );
+  const code = normalizeCurrency(codeOrSymbol);
+  const found = CURRENCIES.find((c) => c.code === code);
   return found?.symbol || codeOrSymbol || '$';
 }
 
