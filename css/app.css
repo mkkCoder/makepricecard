@@ -852,6 +852,18 @@ label.field select:focus,
   font-size: 0.8rem;
 }
 
+.footer-note a {
+  color: var(--ink-soft);
+}
+
+.footer-note a:hover {
+  color: var(--ink);
+}
+
+.paywall-actions .hint a {
+  color: var(--accent);
+}
+
 @keyframes rise {
   from {
     opacity: 0;

@@ -35,19 +35,18 @@ Open the printed URL (ES modules need `http://`, not `file://`).
 - `www`: `CNAME` → `USER.github.io`.
 - Wait for SSL before forcing HTTPS-only.
 
-## Commerce setup
+## Commerce setup (Lemon Squeezy)
 
 Edit `js/config.js`:
 
-1. Set `CHECKOUT_URL` to your Gumroad or Lemon Squeezy product link.
-2. Optionally set `LICENSE_VALIDATE_URL` to a CORS-friendly validate endpoint.
-   - Until set, any key matching `FPC-XXXX-XXXX` or a long alphanumeric key activates Pro **locally** (demo / soft gate).
-3. Client-side gating is bypassable by determined users — intentional for zero-backend.
+1. Set `CHECKOUT_URL` to your Lemon Squeezy **Buy** link (Share on the product/variant).
+2. Keep `LICENSE_VALIDATE_URL` as `https://api.lemonsqueezy.com/v1/licenses/validate` (License API; no store API key).
+3. Optionally set `LEMON_SQUEEZY_STORE_ID` and `LEMON_SQUEEZY_PRODUCT_ID` so keys from other products are rejected.
+4. In Lemon Squeezy, enable **license keys** on the product/variant.
+5. Optional: set the thank-you / redirect URL to `…/app.html?key={license_key}` if Lemon Squeezy provides that placeholder for your flow.
+6. Client-side gating is bypassable — intentional for zero-backend. Browser CORS may block validate; previously verified keys fail-open offline.
 
-### Post-purchase key handoff
-
-- Prefer checkout success URL with `?key=YOUR_LICENSE_KEY` — the app stores it and cleans the query.
-- Or paste the key in the paywall modal.
+Demo keys matching `FPC-XXXX-XXXX` unlock Pro locally without calling Lemon Squeezy (dev only).
 
 ## Pro features
 

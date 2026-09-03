@@ -1,21 +1,26 @@
 /**
- * FastPriceCard — deployment & commerce config.
- * Update CHECKOUT_URL and LICENSE_VALIDATE_URL before going live.
+ * FastPriceCard — deployment & commerce config (Lemon Squeezy).
+ * Replace CHECKOUT_URL with your real Lemon Squeezy buy/checkout link before going live.
  */
 export const APP_NAME = 'FastPriceCard';
 export const APP_URL = 'makefastquote.com/pricelist';
 export const WATERMARK_TEXT = `Created with ${APP_URL}`;
 
-/** Gumroad or Lemon Squeezy checkout / product URL */
-export const CHECKOUT_URL = 'https://makefastquote.gumroad.com/l/fastpricecard';
+/** Lemon Squeezy product buy URL (Share → Buy link, or checkout/buy/{variant_id}) */
+export const CHECKOUT_URL =
+  'https://makefastquote.lemonsqueezy.com/buy/REPLACE_WITH_YOUR_VARIANT_ID';
 
 /**
- * Optional CORS-friendly license validate endpoint.
- * Lemon Squeezy: POST https://api.lemonsqueezy.com/v1/licenses/validate
- * Body: { license_key: "..." }
- * Leave empty to use local format check only until you wire a real endpoint.
+ * Lemon Squeezy License API — validate (no store API key required).
+ * Docs: https://docs.lemonsqueezy.com/api/license-api/validate-license-key
+ * Browser CORS may block this; fail-open uses a previously verified cached key.
  */
-export const LICENSE_VALIDATE_URL = '';
+export const LICENSE_VALIDATE_URL =
+  'https://api.lemonsqueezy.com/v1/licenses/validate';
+
+/** Optional: hard-check that a validated key belongs to your product */
+export const LEMON_SQUEEZY_STORE_ID = '';
+export const LEMON_SQUEEZY_PRODUCT_ID = '';
 
 /** One-time purchase: revalidate at most every 30 days */
 export const LICENSE_REVALIDATE_MS = 30 * 24 * 60 * 60 * 1000;
