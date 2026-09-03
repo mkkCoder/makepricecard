@@ -73,7 +73,11 @@
           <section class="section">
             <h2>Logo <small style="font-weight: 400; opacity: 0.7">(Pro)</small></h2>
             <div class="logo-row">
-              <input id="logo-input" type="file" accept="image/*" />
+              <input id="logo-input" type="file" accept="image/*" hidden />
+              <button type="button" class="btn-secondary" id="logo-pick" style="width: auto">
+                Upload logo
+              </button>
+              <span class="logo-filename" id="logo-filename">No file chosen</span>
               <img id="logo-preview" alt="Logo preview" hidden />
               <button type="button" class="btn-ghost" id="logo-clear" hidden style="width: auto">
                 Clear

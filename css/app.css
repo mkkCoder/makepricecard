@@ -733,12 +733,17 @@ label.field select:focus,
 .logo-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.55rem;
   align-items: center;
 }
 
-.logo-row input[type="file"] {
+.logo-filename {
   font-size: 0.85rem;
+  color: var(--ink-soft);
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #logo-preview {

@@ -122,6 +122,7 @@ function renderEditor() {
   // Logo UI
   const logoPreview = $('#logo-preview');
   const logoClear = $('#logo-clear');
+  const logoName = $('#logo-filename');
   if (logoPreview) {
     if (state.logoDataUrl && isPro) {
       logoPreview.src = state.logoDataUrl;
@@ -131,6 +132,14 @@ function renderEditor() {
     }
   }
   if (logoClear) logoClear.hidden = !(state.logoDataUrl && isPro);
+  if (logoName) {
+    const file = $('#logo-input')?.files?.[0];
+    if (state.logoDataUrl && isPro) {
+      logoName.textContent = file?.name || 'Logo uploaded';
+    } else {
+      logoName.textContent = 'No file chosen';
+    }
+  }
 }
 
 function categoryBlock(cat, ci) {
@@ -306,6 +315,14 @@ function bindEditor() {
       }
       return;
     }
+  });
+
+  $('#logo-pick')?.addEventListener('click', () => {
+    if (!isPro) {
+      openPaywall('logo');
+      return;
+    }
+    $('#logo-input')?.click();
   });
 
   $('#logo-input')?.addEventListener('change', async (e) => {
