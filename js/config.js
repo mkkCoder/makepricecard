@@ -8,7 +8,7 @@ export const WATERMARK_TEXT = `Created with ${APP_URL}`;
 
 /** Lemon Squeezy product buy URL (Share → Buy link, or checkout/buy/{variant_id}) */
 export const CHECKOUT_URL =
-  'https://makefastquote.lemonsqueezy.com/buy/REPLACE_WITH_YOUR_VARIANT_ID';
+  'https://tik-tak.lemonsqueezy.com/checkout/buy/4c7b1992-c3e0-4c4d-ad17-98724dcea690';
 
 /**
  * Lemon Squeezy License API — validate (no store API key required).
