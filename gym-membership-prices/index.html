@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Free Gym Membership Price List Template</title>
     <meta name="description" content="Printable gym membership and class price list. Free PDF maker for monthly plans, day passes, and PT rates." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -45,7 +45,16 @@
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -223,6 +232,7 @@
     </footer>
 
     <script type="application/json" id="niche-state">{"slug":"gym-membership-prices","business":{"name":"Forge Athletic","tagline":"Strength · Classes · PT","phone":"+1 555 0111","instagram":"forgeathletic"},"currency":"USD","template":"minimalist","format":"a4","prefilledItems":[{"name":"Membership","items":[{"name":"Day Pass","description":"Open gym","price":"20"},{"name":"Monthly","description":"Unlimited classes","price":"79"},{"name":"Annual","description":"Best value","price":"790"}]},{"name":"Training","items":[{"name":"PT Session","description":"55 minutes","price":"65"},{"name":"PT 5-Pack","description":"Save 10%","price":"290"},{"name":"Intro Assess","description":"Form check","price":"40"}]}]}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>

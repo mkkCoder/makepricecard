@@ -185,7 +185,7 @@ function nichePageHtml(niche) {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -228,7 +228,16 @@ function nichePageHtml(niche) {
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -325,6 +334,7 @@ function nichePageHtml(niche) {
     </footer>
 
     <script type="application/json" id="niche-state">${JSON.stringify(statePayload)}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>

@@ -1,8 +1,12 @@
 /* Shared legal document pages */
 .legal-page {
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding: 1.25rem 1.25rem 3rem;
+  padding-top: max(1.25rem, env(safe-area-inset-top));
+  padding-right: max(var(--container-px), env(safe-area-inset-right));
+  padding-bottom: max(3rem, env(safe-area-inset-bottom));
+  padding-left: max(var(--container-px), env(safe-area-inset-left));
 }
 
 .legal-page .lp-nav {
@@ -78,6 +82,9 @@
 .legal-footer-links a {
   color: var(--ink-soft);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .legal-footer-links a:hover {

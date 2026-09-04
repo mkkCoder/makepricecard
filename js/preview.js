@@ -28,6 +28,7 @@ function contentOverflows(card) {
  */
 export function fitCardToFrame(card) {
   if (!card) return { density: 1, multipage: false, scaled: false };
+  if (!card.offsetParent) return { density: 1, multipage: false, scaled: false };
 
   card.classList.remove('is-multipage', 'is-scaled');
   card.style.removeProperty('--card-density');

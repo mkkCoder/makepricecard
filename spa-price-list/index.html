@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Free Printable Spa Price List Template</title>
     <meta name="description" content="Make a spa treatment price list online. Facials, massage, packages — free PDF &amp; PNG, no account." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -45,7 +45,16 @@
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -223,6 +232,7 @@
     </footer>
 
     <script type="application/json" id="niche-state">{"slug":"spa-price-list","business":{"name":"Stillwater Spa","tagline":"Massage · Facials · Rituals","phone":"+1 555 0177","instagram":"stillwaterspa"},"currency":"USD","template":"minimalist","format":"a4","prefilledItems":[{"name":"Massage","items":[{"name":"Swedish 60 min","description":"Full body","price":"95"},{"name":"Deep Tissue 60","description":"Focused work","price":"110"},{"name":"Hot Stone 75","description":"Warm basalt","price":"135"}]},{"name":"Facials","items":[{"name":"Classic Facial","description":"50 minutes","price":"85"},{"name":"Hydrating Facial","description":"Glow treatment","price":"105"},{"name":"Couples Ritual","description":"Side-by-side","price":"220"}]}]}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>

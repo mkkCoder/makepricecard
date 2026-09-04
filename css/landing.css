@@ -15,9 +15,11 @@ a.brand-mark:hover span {
 }
 
 .lp-nav {
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.15rem 1.25rem;
+  padding: max(1.15rem, env(safe-area-inset-top)) max(var(--container-px), env(safe-area-inset-right))
+    1.15rem max(var(--container-px), env(safe-area-inset-left));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,6 +41,9 @@ a.brand-mark:hover span {
 .lp-nav-links a {
   color: var(--ink-soft);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .lp-nav-links a:hover {
@@ -50,12 +55,117 @@ a.brand-mark:hover span {
   padding: 0.45rem 0.95rem;
 }
 
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: #fffdf8;
+  border-radius: 10px;
+  color: var(--ink);
+  z-index: 1001;
+}
+
+.hamburger {
+  display: block;
+  width: 1.15rem;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+}
+
+.hamburger::before {
+  top: -6px;
+}
+
+.hamburger::after {
+  top: 6px;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .lp-nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: min(80%, 320px);
+    height: 100dvh;
+    margin: 0;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    padding: max(4.75rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
+      max(1.5rem, env(safe-area-inset-bottom)) 1.25rem;
+    background: #fffdf8;
+    border-left: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .lp-nav-links[data-open="true"] {
+    transform: translateX(0);
+  }
+
+  .lp-nav-links a {
+    width: 100%;
+    padding: 0.35rem 0.15rem;
+  }
+
+  .nav-backdrop[data-open="true"] {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(18, 28, 24, 0.45);
+  }
+
+  body.nav-locked {
+    overflow: hidden;
+  }
+}
+
 .lp-hero {
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 1.5rem max(var(--container-px), env(safe-area-inset-right)) 3rem
+    max(var(--container-px), env(safe-area-inset-left));
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 2rem;
   align-items: center;
 }
@@ -78,7 +188,7 @@ a.brand-mark:hover span {
 .lp-hero h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 4.5vw, 3.35rem);
+  font-size: var(--text-h1);
   line-height: 1.08;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -183,15 +293,17 @@ a.brand-mark:hover span {
 }
 
 .lp-section {
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 2.5rem 1.25rem;
+  padding: var(--section-py) max(var(--container-px), env(safe-area-inset-right))
+    var(--section-py) max(var(--container-px), env(safe-area-inset-left));
 }
 
 .lp-section h2 {
   margin: 0 0 1.35rem;
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  font-size: var(--text-h2);
   letter-spacing: -0.02em;
   line-height: 1.15;
   max-width: 28ch;
@@ -199,14 +311,8 @@ a.brand-mark:hover span {
 
 .lp-feature-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-@media (max-width: 700px) {
-  .lp-feature-grid {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
 }
 
 .lp-feature {
@@ -232,14 +338,8 @@ a.brand-mark:hover span {
 
 .lp-swatch-row {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-@media (max-width: 800px) {
-  .lp-swatch-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .lp-swatch-card {
@@ -264,15 +364,9 @@ a.brand-mark:hover span {
 
 .lp-price-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
   align-items: stretch;
-}
-
-@media (max-width: 700px) {
-  .lp-price-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .lp-price-card {
@@ -303,7 +397,7 @@ a.brand-mark:hover span {
 
 .lp-price span {
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-size: clamp(1.85rem, 1.4rem + 2vw, 2.4rem);
   font-weight: 700;
   letter-spacing: -0.03em;
 }
@@ -336,6 +430,9 @@ a.brand-mark:hover span {
 .lp-faq summary {
   cursor: pointer;
   font-weight: 600;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .lp-faq p {
@@ -345,9 +442,10 @@ a.brand-mark:hover span {
 }
 
 .lp-final {
+  width: calc(100% - 2 * var(--container-px));
   max-width: 1120px;
   margin: 1rem auto 2.5rem;
-  padding: 2.25rem 1.5rem;
+  padding: 2.25rem var(--container-px);
   text-align: center;
   border-radius: 18px;
   border: 1px solid var(--line);
@@ -369,17 +467,22 @@ a.brand-mark:hover span {
 }
 
 .lp-footer {
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 1.25rem 2.5rem;
+  padding: 0 max(var(--container-px), env(safe-area-inset-right))
+    max(2.5rem, env(safe-area-inset-bottom)) max(var(--container-px), env(safe-area-inset-left));
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.75rem;
   color: var(--ink-soft);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .lp-footer a {
   color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }

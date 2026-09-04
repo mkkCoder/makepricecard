@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Free Printable Café Menu Template</title>
     <meta name="description" content="Design a printable café menu online. Coffee, tea, and pastry prices — free PDF &amp; PNG export, no account needed." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -45,7 +45,16 @@
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -223,6 +232,7 @@
     </footer>
 
     <script type="application/json" id="niche-state">{"slug":"cafe-menu","business":{"name":"Harbor Roast","tagline":"Coffee · Pastry · Slow mornings","phone":"+1 555 0160","instagram":"harborroast"},"currency":"USD","template":"minimalist","format":"a4","prefilledItems":[{"name":"Espresso bar","items":[{"name":"Espresso","description":"Single / double","price":"3.50"},{"name":"Cappuccino","description":"12 oz","price":"4.75"},{"name":"Latte","description":"Oat milk available","price":"5.25"}]},{"name":"Bakery","items":[{"name":"Croissant","description":"Butter","price":"3.75"},{"name":"Banana Bread","description":"Slice","price":"4.00"},{"name":"Cookie","description":"Daily bake","price":"2.50"}]}]}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>

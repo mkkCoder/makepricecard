@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Free Bakery Price List &amp; Menu Maker</title>
     <meta name="description" content="Printable bakery price list for breads, cakes, and pastries. Free PDF export — customize in your browser with no signup." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -45,7 +45,16 @@
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -223,6 +232,7 @@
     </footer>
 
     <script type="application/json" id="niche-state">{"slug":"bakery-price-list","business":{"name":"Mill & Crumb","tagline":"Daily bread · Weekend cakes","phone":"+1 555 0191","instagram":"millandcrumb"},"currency":"USD","template":"minimalist","format":"a4","prefilledItems":[{"name":"Bread","items":[{"name":"Sourdough Loaf","description":"900g","price":"9"},{"name":"Baguette","description":"Daily bake","price":"4"},{"name":"Focaccia","description":"Rosemary","price":"7"}]},{"name":"Sweets","items":[{"name":"Cupcake","description":"Each","price":"3.50"},{"name":"Layer Cake","description":"6 inch","price":"42"},{"name":"Cookie Box","description":"Half dozen","price":"14"}]}]}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>

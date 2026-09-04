@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Free Barbershop Price List Template</title>
     <meta name="description" content="Printable barbershop price list maker. Cuts, fades, beard trims — export free PDF or PNG with no account required." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -45,7 +45,16 @@
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -223,6 +232,7 @@
     </footer>
 
     <script type="application/json" id="niche-state">{"slug":"barbershop-price-list","business":{"name":"Northside Barbers","tagline":"Cuts · Fades · Beards","phone":"+1 555 0188","instagram":"northsidebarbers"},"currency":"USD","template":"minimalist","format":"a4","prefilledItems":[{"name":"Cuts","items":[{"name":"Classic Cut","description":"Scissor & clipper","price":"32"},{"name":"Skin Fade","description":"Tapered finish","price":"38"},{"name":"Kids Cut","description":"Under 12","price":"25"}]},{"name":"Beard & extras","items":[{"name":"Beard Trim","description":"Shape & line-up","price":"18"},{"name":"Hot Towel Shave","description":"Straight razor","price":"28"},{"name":"Cut + Beard","description":"Combo package","price":"48"}]}]}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>

@@ -214,6 +214,46 @@ function findItem(itemId) {
   return null;
 }
 
+function bindWorkspaceTabs() {
+  const layout = document.querySelector('.layout');
+  const tabs = $$('[data-workspace-tab]');
+  if (!layout || !tabs.length) return;
+
+  const setTab = (name) => {
+    layout.dataset.workspace = name;
+    tabs.forEach((tab) => {
+      tab.setAttribute('aria-selected', String(tab.dataset.workspaceTab === name));
+    });
+    if (name === 'preview') {
+      requestAnimationFrame(() => {
+        renderPreview($('#preview-stage'), state, { isPro });
+      });
+    }
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => setTab(tab.dataset.workspaceTab));
+  });
+}
+
+function bindMobileExport() {
+  document.querySelectorAll('[data-mobile-export]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const layout = document.querySelector('.layout');
+      if (layout) {
+        layout.dataset.workspace = 'preview';
+        $$('[data-workspace-tab]').forEach((tab) => {
+          tab.setAttribute('aria-selected', String(tab.dataset.workspaceTab === 'preview'));
+        });
+      }
+      requestAnimationFrame(() => {
+        if (btn.dataset.mobileExport === 'pdf') $('#btn-pdf')?.click();
+        else $('#btn-png')?.click();
+      });
+    });
+  });
+}
+
 function bindEditor() {
   const panel = $('#editor-panel');
 
@@ -475,6 +515,8 @@ async function boot() {
   refreshPro();
 
   bindEditor();
+  bindWorkspaceTabs();
+  bindMobileExport();
   renderAll();
 
   // Debounced save on page hide

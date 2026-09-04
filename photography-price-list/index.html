@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Free Photography Price List Template</title>
     <meta name="description" content="Printable photography price list for sessions and packages. Free PDF export — customize rates in your browser." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -45,7 +45,16 @@
   <body class="landing niche-page">
     <header class="lp-nav">
       <a class="brand-mark" href="../">Fast<span>Price</span>Card</a>
-      <nav class="lp-nav-links" aria-label="Primary">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="lp-nav-links" id="primary-nav" aria-label="Primary">
         <a href="../#features">Features</a>
         <a href="../#templates-hub">All templates</a>
         <a href="../#pricing">Pricing</a>
@@ -223,6 +232,7 @@
     </footer>
 
     <script type="application/json" id="niche-state">{"slug":"photography-price-list","business":{"name":"Ava Reed Photo","tagline":"Portraits · Events · Film","phone":"+1 555 0120","instagram":"avareedphoto"},"currency":"USD","template":"minimalist","format":"a4","prefilledItems":[{"name":"Sessions","items":[{"name":"Portrait Hour","description":"1 location","price":"250"},{"name":"Family Session","description":"90 minutes","price":"350"},{"name":"Mini Session","description":"20 minutes","price":"125"}]},{"name":"Events","items":[{"name":"Wedding Half Day","description":"Up to 5 hours","price":"1800"},{"name":"Wedding Full Day","description":"Up to 10 hours","price":"2800"},{"name":"Second Shooter","description":"Add-on","price":"400"}]}]}</script>
+    <script type="module" src="../js/site-nav.js"></script>
     <script type="module" src="../js/niche-page.js"></script>
   </body>
 </html>
